@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/MainMenu/MainPanel/Components/ComponentContainer.tscn" type="PackedScene" id=1]
+
+[node name="MainMenuPanel" type="Control"]
+margin_right = 1980.0
+margin_bottom = 1080.0
+
+[node name="ComponentContainer" parent="." instance=ExtResource( 1 )]
+margin_right = -60.0

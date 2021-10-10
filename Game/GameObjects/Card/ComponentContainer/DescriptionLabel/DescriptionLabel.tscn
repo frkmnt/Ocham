@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Fonts/Cards/Label/DescriptionLabelFont.tres" type="DynamicFont" id=1]
+
+[node name="DescriptionLabel" type="Label"]
+margin_right = 420.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 420, 200 )
+custom_fonts/font = ExtResource( 1 )
+custom_constants/line_spacing = 0
+text = "This is a really long description I made to see if it fits inside the card. It does."
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
