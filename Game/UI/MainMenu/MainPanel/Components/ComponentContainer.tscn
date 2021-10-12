@@ -27,6 +27,7 @@ margin_right = 1591.0
 margin_bottom = 530.0
 
 [node name="PlayButton" parent="." instance=ExtResource( 2 )]
+modulate = Color( 0.623529, 0.839216, 0.541176, 1 )
 margin_left = 662.245
 margin_top = 489.591
 margin_right = 1262.24

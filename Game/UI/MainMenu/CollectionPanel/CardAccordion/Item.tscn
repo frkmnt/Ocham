@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Fonts/Collection/CardAccordionItemValueFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/MainMenu/CollectionPanel/CardAccordion/Item.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/Collection/CardAccordionItemTitleFont.tres" type="DynamicFont" id=4]
+
+[node name="CardAccordionItem" type="Control"]
+margin_right = 400.0
+margin_bottom = 50.0
+script = ExtResource( 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+self_modulate = Color( 0.690196, 0.690196, 0.690196, 1 )
+margin_right = 400.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 400, 50 )
+mouse_filter = 2
+color = Color( 0.623529, 0.839216, 0.541176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleLabel" type="Label" parent="."]
+margin_left = 5.0
+margin_right = 280.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 4 )
+text = "This is a Card"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CostLabel" type="Label" parent="."]
+margin_left = 280.0
+margin_right = 340.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.231373, 0.584314, 0.709804, 1 )
+text = "9"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ValueLabel" type="Label" parent="."]
+modulate = Color( 0.639216, 0.431373, 0.203922, 1 )
+margin_left = 340.0
+margin_right = 400.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 1 )
+text = "9"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="mouse_entered" from="." to="." method="on_hover_entered"]
+[connection signal="mouse_exited" from="." to="." method="on_hover_exited"]

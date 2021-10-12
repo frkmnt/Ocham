@@ -5,6 +5,9 @@
 [node name="MainMenuPanel" type="Control"]
 margin_right = 1980.0
 margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ComponentContainer" parent="." instance=ExtResource( 1 )]
 margin_right = -60.0
