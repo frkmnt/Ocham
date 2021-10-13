@@ -6,9 +6,9 @@ var r_parent_menu
 var r_card_editor_type
 
 #==== Components ====#
-var c_deck_editor_accordion = preload("res://UI/MainManuUi/DeckMenu/DeckViewer/DeckEditor/DeckEditorAccordion.tscn")
-var c_deck_editor_item = preload("res://UI/MainManuUi/DeckMenu/DeckViewer/DeckEditor/DeckEditorAccordionItem.tscn")
-var c_deck_prefab = preload("res://Cards/Decks/Deck.tscn")
+var c_deck_editor_accordion = preload("res://UI/MainMenu/CollectionPanel/DeckEditorPanel/CardAccordion/Accordion.tscn")
+var c_deck_editor_item = preload("res://UI/MainMenu/CollectionPanel/DeckEditorPanel/CardAccordion/Item.tscn")
+#var c_deck_prefab = preload("res://Cards/Decks/Deck.tscn")
 
 var c_accordion_container 
 var c_title
@@ -22,9 +22,8 @@ var i_deck_index
 
 #==== Bootstrap ====#
 
-func initialize(parent_menu):
+func initialize():
 	r_object_factory = get_node("/root/GameOverseer/ObjectFactory")
-	r_parent_menu = parent_menu
 	c_accordion_container = $ScrollContainer/List
 	c_title = $Title
 	create_accordion("Choose Cards") 
@@ -117,13 +116,14 @@ func clear_info_from_panel():
 
 
 func create_deck_from_current_cards():
-	var deck_prefab = c_deck_prefab.instance()
-	deck_prefab.initialize_deck()
-	deck_prefab.s_name = c_title.text
-	deck_prefab.add_card_list(0, c_accordion_container.get_child(0).get_all_card_ids())
-	deck_prefab.add_card_list(1, c_accordion_container.get_child(1).get_all_card_ids())
-	deck_prefab.add_card_list(2, c_accordion_container.get_child(2).get_all_card_ids())
-	return deck_prefab
+	pass
+#	var deck_prefab = c_deck_prefab.instance()
+#	deck_prefab.initialize_deck()
+#	deck_prefab.s_name = c_title.text
+#	deck_prefab.add_card_list(0, c_accordion_container.get_child(0).get_all_card_ids())
+#	deck_prefab.add_card_list(1, c_accordion_container.get_child(1).get_all_card_ids())
+#	deck_prefab.add_card_list(2, c_accordion_container.get_child(2).get_all_card_ids())
+#	return deck_prefab
 
 
 func close_all_accordions():

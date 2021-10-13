@@ -2,15 +2,15 @@ extends Panel
 
 
 #==== Components ====#
-const c_vbox_item_prefab = preload("res://UI/MainMenu/CollectionPanel/DeckEditor/DeckEditorAccordionItem.tscn")
+const c_vbox_item_prefab = preload("res://UI/MainMenu/CollectionPanel/DeckEditorPanel/CardAccordion/Item.tscn")
 
 #==== References ====#
 var r_vbox_container
 var r_parent_menu
 
 #==== Constants ====#
-const i_card_panel_height = 620
-const i_card_gap_height = 50
+const i_card_panel_height = 50 # //TODO add to env 
+const i_card_gap_height = 0
 
 #==== Variables ====#
 var is_expanded = false
@@ -49,7 +49,6 @@ func _process(delta):
 		rect_size.y = lerp(rect_size.y, i_card_count * (i_card_panel_height + i_card_gap_height), ease(i_scaling_speed, 1))
 	else:
 		rect_size.y = lerp(rect_size.y, rect_min_size.y, ease(i_scaling_speed, 1))
-	
 	if last_rect_size != rect_size: # update layout
 		get_parent().update()
 		last_rect_size = rect_size

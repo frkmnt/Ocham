@@ -1,13 +1,16 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Fonts/Collection/CardAccordionItemValueFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://UI/MainMenu/CollectionPanel/CardAccordion/Item.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Fonts/Collection/CardAccordionItemTitleFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://UI/MainMenu/CollectionPanel/DeckEditorPanel/CardAccordion/Item.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/Collection/CardAccordionItemValueFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Fonts/Collection/CardAccordionItemTitleFont.tres" type="DynamicFont" id=3]
 
 [node name="CardAccordionItem" type="Control"]
 margin_right = 400.0
 margin_bottom = 50.0
-script = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Background" type="ColorRect" parent="."]
 self_modulate = Color( 0.690196, 0.690196, 0.690196, 1 )
@@ -24,7 +27,7 @@ __meta__ = {
 margin_left = 5.0
 margin_right = 280.0
 margin_bottom = 50.0
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 3 )
 text = "This is a Card"
 align = 1
 valign = 1
@@ -37,7 +40,7 @@ __meta__ = {
 margin_left = 280.0
 margin_right = 340.0
 margin_bottom = 50.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.231373, 0.584314, 0.709804, 1 )
 text = "9"
 align = 1
@@ -51,7 +54,7 @@ modulate = Color( 0.639216, 0.431373, 0.203922, 1 )
 margin_left = 340.0
 margin_right = 400.0
 margin_bottom = 50.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "9"
 align = 1
 valign = 1

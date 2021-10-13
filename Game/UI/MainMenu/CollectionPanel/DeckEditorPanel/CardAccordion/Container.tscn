@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://UI/MainMenu/CollectionPanel/CardAccordion/Accordion.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/MainMenu/CollectionPanel/DeckEditorPanel/CardAccordion/Accordion.tscn" type="PackedScene" id=1]
 
 [node name="CardAccordionContainer" type="Panel"]
 self_modulate = Color( 0.623529, 0.839216, 0.541176, 1 )
@@ -25,6 +25,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 0.0
 margin_bottom = 0.0
+_label_text = "Active"
 
 [node name="GrowthAccordion" parent="ScrollContainer/VBoxContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -32,3 +33,4 @@ anchor_bottom = 0.0
 margin_top = 4.0
 margin_right = 0.0
 margin_bottom = 4.0
+_label_text = "Growth"

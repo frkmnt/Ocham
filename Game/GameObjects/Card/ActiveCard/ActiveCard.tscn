@@ -6,14 +6,16 @@
 [ext_resource path="res://GameObjects/Card/ActiveCard/ActiveCard.gd" type="Script" id=4]
 
 [node name="ActiveCard" type="Control"]
+margin_right = 542.0
+margin_bottom = 809.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Bg" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 542.0
+margin_bottom = 809.0
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

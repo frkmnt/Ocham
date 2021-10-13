@@ -6,16 +6,15 @@ var c_content_panel
 
 #==== Variables ====#
 
-export var spacing = 0
-
+export var _spacing = 40
+export var _label_text = "Cards"
 
 
 #==== Bootstrap ====#
 
-func initialize(name):
-	$ShowContentButton.text = name
+func _ready():
+	$ShowContentButton.text = _label_text
 	c_content_panel = $ContentPanel
-	c_content_panel.initialize(self)
 
 
 
@@ -26,7 +25,7 @@ func _draw():
 	for child in get_children():
 		child.rect_position = last_end_pos
 		last_end_pos.y = child.rect_position.y + child.rect_size.y 
-		last_end_pos.y += spacing
+		last_end_pos.y += _spacing
 	rect_min_size.y = last_end_pos.y #to work with ScrollContainer
 
 
