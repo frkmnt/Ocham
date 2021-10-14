@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Fonts/Cards/Value/ValueCounterFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Graphics/Card/Cost/fungi_cost.png" type="Texture" id=2]
+
+[node name="FungiCostFrame" type="CenterContainer"]
+margin_right = 91.0
+margin_bottom = 91.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cost" type="TextureRect" parent="."]
+margin_right = 126.0
+margin_bottom = 128.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 48.0
+margin_top = 31.0
+margin_right = 77.0
+margin_bottom = 97.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "9"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

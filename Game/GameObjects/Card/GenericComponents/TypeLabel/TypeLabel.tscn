@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Fonts/Cards/Label/RarityLabelFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://GameObjects/Card/GenericComponents/TypeLabel/TypeLabel.gd" type="Script" id=2]
+
+[node name="TypeLabel" type="CenterContainer"]
+margin_left = 84.0
+margin_top = 590.0
+margin_right = 474.0
+margin_bottom = 645.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 95.0
+margin_right = 295.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 1 )
+text = "Card Type"
+align = 1
+valign = 1

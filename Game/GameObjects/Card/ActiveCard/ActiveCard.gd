@@ -6,8 +6,7 @@ extends Control
 # //TODO test if the font "duplicate" has an effect 
 
 #== Components ==#
-onready var _component_container = $ComponentContainer
-onready var description_label = $ComponentContainer/DescriptionLabel
+onready var description_label = $DescriptionLabel
 
 #== Variables ==#
 var _cost = 0
@@ -21,7 +20,6 @@ var _effect = ""
 func _ready():
 	var font = description_label.get("custom_fonts/font")
 	var original_size = font.size
-	print(original_size)
 	var text = description_label.text
 #	description_label.text = "This is a really long description I made to see if it fits inside the card. It does."
 	var label_size = description_label.rect_min_size
@@ -29,7 +27,6 @@ func _ready():
 	
 	var size_adjustment = get_font_size_adjustment(font, text, label_size, line_spacing)
 	font.size = original_size + size_adjustment
-	print(size_adjustment)
 
 
 
