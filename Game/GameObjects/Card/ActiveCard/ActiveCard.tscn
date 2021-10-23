@@ -1,36 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://GameObjects/Card/ActiveCard/Components/CostFrame/ActiveCostFrame.tscn" type="PackedScene" id=1]
-[ext_resource path="res://GameObjects/Card/GenericComponents/Border/Border.tscn" type="PackedScene" id=2]
-[ext_resource path="res://GameObjects/Card/ActiveCard/Components/CenterFrame/ActiveCenterFrame.tscn" type="PackedScene" id=3]
-[ext_resource path="res://GameObjects/Card/GenericComponents/DescriptionLabel/DescriptionLabel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://GameObjects/Card/GenericComponents/TypeLabel/TypeLabel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://GameObjects/Card/ActiveCard/Frame/ActiveFrame.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GameObjects/Card/ActiveCard/ActiveCard.gd" type="Script" id=6]
+[ext_resource path="res://GameObjects/Card/GenericComponents/Common/CardCommon.tscn" type="PackedScene" id=7]
+[ext_resource path="res://GameObjects/Card/GenericComponents/CollisionHandler/CollisionHandler.tscn" type="PackedScene" id=8]
 
-[node name="ActiveCard" type="Control"]
-margin_right = 559.0
-margin_bottom = 775.0
+[node name="ActiveCard" type="Node2D"]
 script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Border" parent="." instance=ExtResource( 2 )]
+[node name="CardCommon" parent="." instance=ExtResource( 7 )]
 
-[node name="CostFrame" parent="." instance=ExtResource( 1 )]
-margin_left = 415.108
-margin_top = 19.2182
-margin_right = 539.108
-margin_bottom = 146.218
+[node name="ActiveFrame" parent="." instance=ExtResource( 3 )]
 
-[node name="CenterFrame" parent="." instance=ExtResource( 3 )]
-margin_left = 18.0
-margin_top = 127.0
-margin_right = 540.0
-margin_bottom = 556.0
-
-[node name="TypeLabel" parent="." instance=ExtResource( 5 )]
-margin_bottom = 636.0
-
-[node name="DescriptionLabel" parent="." instance=ExtResource( 4 )]
-rect_min_size = Vector2( 500, 100 )
+[node name="CollisionHandler" parent="." instance=ExtResource( 8 )]

@@ -11,7 +11,12 @@ config_version=4
 [application]
 
 config/name="Fungi"
+run/main_scene="res://Utils/Overseer/Overseer.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+CardManager="*res://Utils/Cards/CardManager.tscn"
 
 [display]
 

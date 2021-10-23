@@ -1,12 +1,18 @@
-extends Control
+extends Node2D
 
 #==== Class Comments ====#
 # Active cards are played in the top slots. They have a cost and
 # an associated attack value. 
-# //TODO test if the font "duplicate" has an effect 
 
 #== Components ==#
-onready var description_label = $DescriptionLabel
+onready var _container = get_parent()
+
+#== Components ==#
+onready var _frame = $ActiveFrame 
+onready var _card_frame = $ActiveFrame/Frame
+onready var _description_label = $ActiveFrame/Frame/DescriptionFrame/DescriptionLabel
+onready var _common = $CollisionHandler
+onready var _data = $CardCommon/Data
 
 #== Variables ==#
 var _cost = 0
@@ -18,51 +24,38 @@ var _effect = ""
 #==== Bootstrap ====#
 
 func _ready():
-	var font = description_label.get("custom_fonts/font")
-	var original_size = font.size
-	var text = description_label.text
-#	description_label.text = "This is a really long description I made to see if it fits inside the card. It does."
-	var label_size = description_label.rect_min_size
-	var line_spacing = description_label.get("custom_constants/line_spacing")
-	
-	var size_adjustment = get_font_size_adjustment(font, text, label_size, line_spacing)
-	font.size = original_size + size_adjustment
+	pass
+
+
+#==== Utils ====#
+
+func get_card_size():
+	return Vector2(_card_frame.texture.get_width() * scale.x, _card_frame.texture.get_height() * scale.y)
+
+func get_card_width():
+	return _card_frame.texture.get_width() * scale.x
+
+func get_card_height():
+	return _card_frame.texture.get_height() * scale.y
+
 
 
 
 #==== Update Values ====#
 
 func set_new_text (new_text):
-	description_label
+	_description_label.text = new_text
 
 
 
 #==== Logic ====#
 
-func get_font_size_adjustment(font, text, label_size, line_spacing):
-	var adjustment_font = font.duplicate(true)
-	var line_height = font.get_height()
-	var adjustment = 0
-	# line_spacing should be calculated into rect_size
-	# This calculates the amount of vertical pixels the text would take
-	# once it was word-wrapped.
-	var label_rect_y = adjustment_font.get_wordwrap_string_size(
-			text, label_size.x).y \
-			/ line_height \
-			* (line_height + line_spacing) \
-			- line_spacing
-	# If the y-size of the wordwrapped text would be bigger than the current
-	# available y-size foir this label, we reduce the text, until we
-	# it's small enough to stay within the boundaries
-	while label_rect_y > label_size.y:
-		adjustment -= 1
-		adjustment_font.size = font.size + adjustment
-		line_height = adjustment_font.get_height()
-		label_rect_y = adjustment_font.get_wordwrap_string_size(
-				text,label_size.x).y \
-				/ line_height \
-				* (line_height + line_spacing) \
-				- line_spacing
-		if adjustment_font.size < 5:
-			break
-	return(adjustment)
+
+
+
+
+#func start_card_back_animation():
+#	_tween.interpolate_property(self,'modulate',
+#			_pulse_values[0], _pulse_values[1], 2,
+#			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	_tween.start()
