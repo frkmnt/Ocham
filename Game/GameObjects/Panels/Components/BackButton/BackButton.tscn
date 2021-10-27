@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="BackButton" type="Button"]
+margin_left = 1865.0
+margin_right = 1920.0
+margin_bottom = 55.0
+text = "BACK"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

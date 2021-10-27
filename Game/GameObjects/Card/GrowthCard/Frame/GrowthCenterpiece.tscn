@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GameObjects/Card/Components/CenterFrame/CostLabel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Graphics/Card/Centerpiece/e_common.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Graphics/Card/Centerpiece/i_centerpiece.png" type="Texture" id=3]
+
+[node name="GrowthCenterpiece" type="Sprite"]
+texture = ExtResource( 2 )
+
+[node name="Frame" type="Sprite" parent="."]
+position = Vector2( 5, 0 )
+texture = ExtResource( 3 )
+
+[node name="CostLabel" parent="Frame" instance=ExtResource( 1 )]
+margin_left = -21.0
+margin_top = -40.0
+margin_right = 11.0
+margin_bottom = 32.0

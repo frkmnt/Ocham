@@ -31,20 +31,20 @@ func _draw():
 
 
 
-#==== Logic ====#
+#==== Accordion Item Management ====#
 
-
-func add_card(card_id, description, qty):
-	_content_panel.add_card(card_id, description, qty)
-
-
-func clear_cards_from_accordion():
-	_content_panel.remove_all_cards()
+func add_card(card):
+	_content_panel.add_card(card)
+	update_label()
 
 func remove_card(index):
 #	_content_panel.get_child(0).get_child(index).queue_free()
 	_content_panel.remove_card(index)
+	update_label()
 
+func clear_cards_from_accordion():
+	_content_panel.remove_all_cards()
+	update_label()
 
 func get_all_card_ids():
 	var card_id_list = []
@@ -57,8 +57,7 @@ func get_all_card_ids():
 #==== UI ====#
 
 func update_label():
-	_show_content_button.text = _show_content_button.text + \
-		" (" + String(_content_panel.card_count) + ")"
+	_show_content_button.text = _label_text + " " + " (" + String(_content_panel.card_count) + ")"
 
 
 

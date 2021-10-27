@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GameObjects/Panels/MainMenu/CollectionPanel/DeckEditorPanel/ArrowButton/ArrowButton.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Graphics/MainMenu/DeckEditor/ArrowButton/arrow.png" type="Texture" id=2]
+
+[node name="ArrowButton" type="TextureButton"]
+self_modulate = Color( 0.305882, 0.87451, 0.317647, 1 )
+margin_right = 900.0
+margin_bottom = 900.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture_normal = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="." to="." method="on_click"]

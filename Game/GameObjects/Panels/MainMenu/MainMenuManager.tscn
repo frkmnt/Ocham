@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GameObjects/Panels/MainMenu/MainMenuManager.gd" type="Script" id=1]
+[ext_resource path="res://GameObjects/Panels/MainMenu/MainPanel/MainPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GameObjects/Panels/MainMenu/CollectionPanel/MainCollectionPanel/MainCollectionPanel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GameObjects/Panels/MainMenu/CollectionPanel/DeckEditorPanel/DeckEditorPanel.tscn" type="PackedScene" id=4]
+
+[node name="MainMenuManager" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 18.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainPanel" parent="." instance=ExtResource( 2 )]
+
+[node name="MainCollectionPanel" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="DeckEditorPanel" parent="." instance=ExtResource( 4 )]
+visible = false

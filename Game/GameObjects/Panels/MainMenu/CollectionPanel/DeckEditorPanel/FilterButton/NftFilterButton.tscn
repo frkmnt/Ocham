@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Fonts/Collection/CardAccordionItemValueFont.tres" type="DynamicFont" id=1]
+
+[node name="NftFilterButton" type="Button"]
+self_modulate = Color( 0.596078, 0.956863, 0.435294, 1 )
+margin_right = 214.0
+margin_bottom = 50.0
+toggle_mode = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 214.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 1 )
+text = "This is a button"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

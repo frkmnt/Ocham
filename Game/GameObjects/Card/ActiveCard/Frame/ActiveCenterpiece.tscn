@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://GameObjects/Card/GenericComponents/CenterFrameLabel/CenterFrameLabel.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Graphics/Card/Centerpiece/active_common.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Graphics/Card/Centerpiece/active_centerpiece.png" type="Texture" id=3]
+[ext_resource path="res://GameObjects/Card/Components/CenterFrame/CostLabel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Graphics/Card/Centerpiece/g_common.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Graphics/Card/Centerpiece/g_centerpiece.png" type="Texture" id=3]
 
-[node name="ActiveCenterpiece" type="Sprite"]
+[node name="CreatureCenterpiece" type="Sprite"]
 position = Vector2( -5, 100 )
 texture = ExtResource( 2 )
 

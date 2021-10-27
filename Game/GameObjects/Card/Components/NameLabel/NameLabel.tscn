@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Fonts/Cards/Label/NameLabelFont.tres" type="DynamicFont" id=1]
+
+[node name="NameLabel" type="Label"]
+margin_left = -260.0
+margin_top = -300.0
+margin_right = 260.0
+margin_bottom = -170.0
+rect_min_size = Vector2( 100, 50 )
+custom_fonts/font = ExtResource( 1 )
+custom_constants/line_spacing = 0
+text = "Card Name"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

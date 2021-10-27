@@ -3,6 +3,8 @@ extends Node
 #==== Comments ====#
 # TODO add the cards to the list and refactor all the get_child calls
 
+#==== References ====#
+onready var _parent = get_parent()
 
 #==== Logic Variables ====#
 var _card_list = [] 
@@ -16,7 +18,7 @@ export var _rows = 2
 export var _width = 0
 export var _height = 0
 
-export var _min_h_gap = 0.05
+export var _min_h_gap = 0
 export var _min_v_gap = 0.05
 
 
@@ -28,11 +30,11 @@ func _ready():
 		position_cards_correctly()
 
 
-
 #==== Card Logic ====#
 
 func add_card(card):
 	_card_list.append(card)
+	add_child(card)
 
 func add_card_list(card_list):
 	pass
@@ -41,15 +43,16 @@ func remove_card(index):
 	pass
 
 func remove_all_cards():
-	pass
+	_card_list = []
+	for card in get_children():
+		remove_child(card)
+		card.queue_free()
 
 
+#==== Card Interaction ====#
 
-#==== Signal Binding ====#
-
-func apply_hover_signal_to_card():
-	pass
-
+func on_card_click(card):
+	_parent.on_card_click(card)
 
 
 #==== Position Cards ====#
@@ -102,10 +105,20 @@ func get_total_card_height():
 
 
 func get_hgap_size(total_card_width):
-	return (_width - total_card_width) / (_columns - 1)
+	var h_gap
+	if _columns - 1 == 0:
+		h_gap = 0
+	else:
+		h_gap = (_width - total_card_width) / (_columns - 1)
+	return h_gap
 
 func get_vgap_size(total_card_height):
-	return (_height - total_card_height) / (_rows - 1)
+	var v_gap
+	if _rows - 1 == 0:
+		v_gap = 0
+	else:
+		v_gap = (_height - total_card_height) / (_rows - 1)
+	return v_gap
 
 
 func get_min_hgap_size():
@@ -130,7 +143,7 @@ func get_correct_vscale(total_card_height, min_gap_size):
 
 func apply_scale_to_cards(new_scale):
 	for card in get_children():
-		card._common.scale_card(Vector2(new_scale, new_scale))
+		card._interaction_handler.scale_card(Vector2(new_scale, new_scale))
 
 
 
@@ -150,6 +163,8 @@ func position_cards():
 		y_idx = floor(i / _columns)
 		card_h = card.get_card_height()
 		card.position.y = (y_idx * card_h) + (card_h / 2) + (y_idx * vgap)
-		card._common._order = i
+		card._interaction_handler._order = i
 		card.z_index = i
 		i += 1
+
+

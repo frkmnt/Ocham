@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Fonts/MainMenu/ButtonFont.tres" type="DynamicFont" id=1]
+
+[node name="MainMenuButton" type="Button"]
+modulate = Color( 0.623529, 0.839216, 0.541176, 1 )
+margin_right = 600.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 600, 200 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.67451, 0.67451, 0.67451, 1 )
+custom_colors/font_color_pressed = Color( 0.117647, 0.117647, 0.117647, 1 )
+text = "Button"
+__meta__ = {
+"_edit_use_anchors_": false
+}

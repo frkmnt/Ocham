@@ -8,35 +8,39 @@ extends Node2D
 onready var _container = get_parent()
 
 #== Components ==#
-onready var _frame = $ActiveFrame 
-onready var _card_frame = $ActiveFrame/Frame
-onready var _description_label = $ActiveFrame/Frame/DescriptionFrame/DescriptionLabel
-onready var _common = $CollisionHandler
-onready var _data = $CardCommon/Data
+var _frame
+var _card_frame 
+var _data 
+var _interaction_handler 
 
-#== Variables ==#
-var _cost = 0
-var _power = 0
-var _effect = ""
 
 
 
 #==== Bootstrap ====#
 
-func _ready():
-	pass
+func initialize(data_dict):
+	initialize_components()
+	_data.initialize(data_dict)
+	_frame.initialize(data_dict)
+
+func initialize_components():
+	_frame = $ActiveFrame 
+	_card_frame = $ActiveFrame
+	_data = $ActiveData
+	_interaction_handler = $InteractionHandler
 
 
-#==== Utils ====#
+
+#==== Utils TODO MOVE TO INTERACTION MANAGER====#
 
 func get_card_size():
-	return Vector2(_card_frame.texture.get_width() * scale.x, _card_frame.texture.get_height() * scale.y)
+	return Vector2(_card_frame.get_width() * scale.x, _card_frame.get_height() * scale.y)
 
 func get_card_width():
-	return _card_frame.texture.get_width() * scale.x
+	return _card_frame.get_width() * scale.x
 
 func get_card_height():
-	return _card_frame.texture.get_height() * scale.y
+	return _card_frame.get_height() * scale.y
 
 
 
@@ -44,7 +48,7 @@ func get_card_height():
 #==== Update Values ====#
 
 func set_new_text (new_text):
-	_description_label.text = new_text
+	_card_frame._description_label.text = new_text
 
 
 

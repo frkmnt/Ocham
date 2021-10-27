@@ -1,21 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://GameObjects/Card/GenericComponents/TypeLabel/TypeLabel.tscn" type="PackedScene" id=1]
-[ext_resource path="res://GameObjects/Card/GenericComponents/DescriptionLabel/DescriptionLabel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Graphics/Card/Border/border.png" type="Texture" id=3]
-[ext_resource path="res://GameObjects/Card/FungiCard/Components/CostFrame/FungiCostFrame.tscn" type="PackedScene" id=4]
-[ext_resource path="res://GameObjects/Card/FungiCard/Components/CenterFrame/FungiCenterFrame.tscn" type="PackedScene" id=5]
-[ext_resource path="res://GameObjects/Card/FungiCard/FungiCard.gd" type="Script" id=6]
+[ext_resource path="res://GameObjects/Card/Components/InteractionHandler/InteractionHandler.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GameObjects/Card/FungiCard/FungiCard.gd" type="Script" id=2]
+[ext_resource path="res://GameObjects/Card/FungiCard/Data/FungiData.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GameObjects/Card/FungiCard/Frame/FungiFrame.tscn" type="PackedScene" id=4]
 
-[node name="FungiCard" type="Sprite"]
-texture = ExtResource( 3 )
-script = ExtResource( 6 )
+[node name="FungiCard" type="Node2D"]
+script = ExtResource( 2 )
 
-[node name="CostFrame" parent="." instance=ExtResource( 4 )]
-position = Vector2( 200.243, -305.865 )
+[node name="FungiFrame" parent="." instance=ExtResource( 4 )]
 
-[node name="CenterFrame" parent="." instance=ExtResource( 5 )]
+[node name="FungiData" parent="." instance=ExtResource( 3 )]
 
-[node name="TypeLabel" parent="." instance=ExtResource( 1 )]
-
-[node name="DescriptionLabel" parent="." instance=ExtResource( 2 )]
+[node name="InteractionHandler" parent="." instance=ExtResource( 1 )]

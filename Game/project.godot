@@ -17,6 +17,9 @@ config/icon="res://icon.png"
 [autoload]
 
 CardManager="*res://Utils/Cards/CardManager.tscn"
+ObjectFactory="*res://Utils/Factory/ObjectFactory.tscn"
+CardLoader="*res://Utils/Cards/CardLoader.tscn"
+GlobalWorldEnvironment="*res://Utils/WorldEnvironment/WorldEnvironment.tscn"
 
 [display]
 
@@ -32,7 +35,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"

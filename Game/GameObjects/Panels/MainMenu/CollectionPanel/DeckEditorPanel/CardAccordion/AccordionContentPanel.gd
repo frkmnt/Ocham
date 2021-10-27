@@ -1,12 +1,7 @@
 extends Panel
 
-
 #==== Components ====#
-const _accordion_item = preload("res://GameObjects/Panels/MainMenu/CollectionPanel/DeckEditorPanel/CardAccordion/Item.tscn")
-
-#==== References ====#
-var r_vbox_container
-var r_parent_menu
+onready var _vbox_container = $VBoxContainer
 
 #==== Constants ====#
 const i_card_panel_height = 50 # //TODO add to env 
@@ -24,8 +19,6 @@ var scaling_speed = 0.002
 #==== Bootstrap ====#
 
 func initialize(parent_menu):
-	r_parent_menu = parent_menu
-	r_vbox_container = $VBoxContainer
 	shrink_panel()
 
 
@@ -39,7 +32,7 @@ func toggle_show_content():
 
 
 
-#==== Tick ====#
+#==== Animation ====#
 
 func _process(delta):
 	if abs(rect_size.y-rect_min_size.y) < 1: # snap to end
@@ -58,30 +51,32 @@ func _process(delta):
 	else:
 		scaling_speed = 0.002
 
+func shrink_panel():
+	is_expanded = false
+	rect_size.y = rect_min_size.y
 
 
-#==== Logic ====#
 
-func add_card(card_id, description, qty):
-	var item_instance = _accordion_item.instance()
-	item_instance.initialize(self, card_id, description, qty)
-	r_vbox_container.add_child(item_instance)
+
+#==== Card Management ====#
+
+func add_card(card_data):
+	var accordion_item = ObjectFactory.instance_accordion_item()
+	_vbox_container.add_child(accordion_item)
+	accordion_item.set_info(card_data.card_name, card_data.cost, card_data.value)
 	card_count += 1
 
 
 func remove_card(index):
 	card_count -= 1
-	r_vbox_container.get_child(index).queue_free()
+	_vbox_container.get_child(index).queue_free()
 
 
 func remove_all_cards():
-	for child in r_vbox_container.get_children():
+	for child in _vbox_container.get_children():
 		card_count -= 1
 		child.queue_free()
 
 
-func shrink_panel():
-	is_expanded = false
-	rect_size.y = rect_min_size.y
 
 

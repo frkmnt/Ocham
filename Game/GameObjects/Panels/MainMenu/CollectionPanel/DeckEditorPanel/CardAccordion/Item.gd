@@ -1,26 +1,18 @@
 extends Control
 
 #==== Components ====#
-var _title_label
-var _cost_label
-var _value_label
+onready var _name_label = $TitleLabel
+onready var _cost_label = $CostLabel
+onready var _value_label = $ValueLabel
 var _hover_timer # instanced when the mouse enters the area on hover
 
-#==== Bootstrap ====#
-
-func initialize():
-	_title_label = $TitleLabel
-	_cost_label = $CostLabel
-	_value_label = $ValueLabel
-
-
 
 #==== Bootstrap ====#
 
-func set_info(title, cost, value):
-	_title_label.text = title
-	_cost_label.text = cost
-	_value_label.text = value
+func set_info(name, cost, value):
+	_name_label.text = name
+	_cost_label.text = str(cost)
+	_value_label.text = str(value)
 
 
 
