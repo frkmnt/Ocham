@@ -16,13 +16,6 @@ var scaling_speed = 0.002
 
 
 
-#==== Bootstrap ====#
-
-func initialize(parent_menu):
-	shrink_panel()
-
-
-
 
 #==== Logic ====#
 

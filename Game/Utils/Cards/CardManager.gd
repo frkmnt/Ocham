@@ -8,6 +8,7 @@ signal card_effect_resize_font
 
 #==== Input Variables ====#
 var _selected_card = null
+var _topmost_card = null
 
 var _card_size = load("res://Assets/Graphics/Card/Border/border.png").get_size()
 var _min_font_size = 35
@@ -57,12 +58,23 @@ func on_left_click(event):
 				highest_z_index = card.z_index
 	if _selected_card != null and _selected_card._interaction_handler.is_clickable():
 		_selected_card._interaction_handler.on_left_click(event)
-		_selected_card.z_index = _selected_card._container.get_child_count()
+
 
 func on_left_release():
 	if _selected_card != null:
-		_selected_card._interaction_handler.on_left_release()
-		_selected_card.z_index = _selected_card._interaction_handler._order
+		var all_shapes = get_world_2d().direct_space_state.intersect_point(get_global_mouse_position(), 32, [], 0x7FFFFFFF, false, true)
+		var card_slot
+		for shape in all_shapes: # get all desired shapes
+			shape = shape["collider"]
+			if shape.is_in_group("card_slot"):
+				print("card_slot")
+				card_slot = shape
+				card_slot.set_card_on_slot(_selected_card)
+				break
+		if card_slot == null:
+			var interaction_handler = _selected_card._interaction_handler
+			interaction_handler.interp_to_original_position()
+			interaction_handler.set_original_z_index()
 	_selected_card = null
 
 
@@ -94,8 +106,35 @@ func on_right_release():
 func handle_mouse_motion(event):
 	if  _selected_card:
 		_selected_card._interaction_handler.on_mouse_motion(event)
-
-
+	else:
+		var all_shapes = get_world_2d().direct_space_state.intersect_point(get_global_mouse_position(), 32, [], 0x7FFFFFFF, false, true)
+		var card
+		var topmost_card
+		var highest_z_index = -1
+		for shape in all_shapes: # get all desired shapes
+			shape = shape["collider"]
+			if shape.is_in_group("card"):
+				card = shape._card
+				if card.z_index > highest_z_index:
+					topmost_card = card
+					highest_z_index = card.z_index
+		if topmost_card != null:
+			if _topmost_card == null:
+				_topmost_card = topmost_card
+				_topmost_card._interaction_handler.on_mouse_entered()
+				_topmost_card.z_index = _topmost_card._container.get_child_count()
+			elif _topmost_card == topmost_card:
+				return
+			else:
+				_topmost_card._interaction_handler.on_mouse_exited()
+				_topmost_card.z_index = _topmost_card._interaction_handler._order
+				_topmost_card = topmost_card
+				_topmost_card._interaction_handler.on_mouse_entered()
+				_topmost_card.z_index = _topmost_card._container.get_child_count()
+		elif _topmost_card != null:
+			_topmost_card._interaction_handler.on_mouse_exited()
+			_topmost_card.z_index = _topmost_card._interaction_handler._order
+			_topmost_card = null
 
 
 

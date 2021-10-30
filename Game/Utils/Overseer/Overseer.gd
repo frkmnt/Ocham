@@ -1,8 +1,11 @@
 extends Node
 
+#==== Main Scenes ====#
+
+
 #==== Components ====#
-var _panel_mananger # holds the in game panels
-var _factory_manager # instantiate objects
+onready var _panel_manager = $PanelManager
+
 
 
 #==== Bootstrap ====#
@@ -12,3 +15,5 @@ func _init():
 
 func _ready():
 	pass
+
+

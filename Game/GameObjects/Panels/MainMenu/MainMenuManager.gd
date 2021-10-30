@@ -3,6 +3,9 @@ extends Control
 #==== Class Comments ====#
 # Aliases: mp -> main panel, mc -> main card collection, de -> deck editor
 
+#==== References ====#
+onready var _parent = get_parent()
+
 #==== Components ====#
 onready var _mp = $MainPanel
 onready var _mc = $MainCollectionPanel
@@ -15,20 +18,21 @@ func _ready():
 	pass
 
 
-#==== MP ====#
+#==== Main Panel ====#
 
 func on_mp_play_button_clicked():
-	print("TODO: Implement Play Menu")
+	var deck = get_current_deck()
+	_parent.go_to_game(deck)
 
 func on_mp_collection_button_clicked():
 	_mp.visible = false
 	_mc.visible = true
 
 
-#==== CC ====#
+#==== Main Collection ====#
 
-func on_mc_deck_clicked():
-	_de.initialize([0, 0, 1, 1, 2, 2])
+func on_mc_deck_clicked(deck):
+	_de.initialize(deck)
 	_de.on_open()
 	_mc.visible = false
 
@@ -36,13 +40,16 @@ func on_mc_back_button_clicked():
 	_mc.visible = false
 	_mp.visible = true
 
+func get_current_deck():
+	return _mc._grid.get_child(0)._deck
 
 
-#==== DE ====#
+#==== Deck Editor ====#
 
 func on_de_back_button_clicked():
 	_de.visible = false
 	_mc.visible = true
+
 
 
 

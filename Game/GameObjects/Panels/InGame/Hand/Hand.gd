@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 #==== Comments ====#
 # TODO add the cards to the list and refactor all the get_child calls
@@ -10,10 +10,10 @@ var _card_list = []
 
 
 #==== UI Variables ====#
-export var _width = 0
-export var _height = 0
+export var _width = 1000
+export var _height = 600
 
-export var _overlap_h = 0.3 # % of card width
+export var _overlap_h = 0.15 # % of card width
 
 
 
@@ -24,11 +24,17 @@ func _ready():
 		position_cards_correctly()
 
 
+func initialize_with_deck(deck):
+	for card in deck._deck_cards["all_cards"]:
+		print("my bróda ", card.card_name)
+
 
 #==== Card Logic ====#
 
 func add_card(card):
 	_card_list.append(card)
+	add_child(card)
+	card._interaction_handler._locked = false
 
 func add_card_list(card_list):
 	pass
@@ -40,11 +46,13 @@ func remove_all_cards():
 	pass
 
 
+#==== Card Interaction ====#
 
-#==== Signal Binding ====#
+func on_card_click(card):
+	print(card._data._card_name)
 
-func apply_hover_signal_to_card():
-	pass
+
+
 
 
 
@@ -83,22 +91,21 @@ func get_correct_hscale(overlap_size):
 
 
 
-
-
 #==== Transform ====#
 
 func apply_scale_to_cards(new_scale):
 	for card in get_children():
-		card._common.scale_card(Vector2(new_scale, new_scale))
+		card._interaction_handler.scale_card(Vector2(new_scale, new_scale))
 
 func position_cards(overlap_size):
 	var i = 0
 	var start_x = - (_width / 2)
 	var card_size = CardManager._card_size
-		
+	var overlap = overlap_size / (get_child_count() - 1)
+	
 	for card in get_children():
-		print("posing")
-		card.position.x = start_x + (overlap_size * (i-1)) + (card_size.x / 2)
-		card._common._order = i
+		card.position.x = start_x + (overlap * (i-1)) + (card_size.x / 2)
+		card.position.x *= card.scale.x
+		card._interaction_handler._order = i
 		card.z_index = i
 		i += 1

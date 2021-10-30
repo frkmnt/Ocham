@@ -1,5 +1,8 @@
 extends Node2D
 
+#==== References ====#
+onready var _card = get_parent()
+
 #==== Components ====#
 onready var _frame 
 onready var _name_label 
@@ -7,6 +10,8 @@ onready var _description_label
 onready var _cost_label
 onready var _value_label
 onready var _card_glow
+onready var _cardback
+
 
 #==== Variables ====#
 var card_name = "Card"
@@ -46,10 +51,11 @@ func initialize_components():
 	_cost_label = $Frame/Cost/CostLabel
 	_value_label = $Frame/ActiveCenterpieceCommon/Frame/ValueLabel
 	_card_glow = $CardGlow
-#	_name_label.text = card_name
+	_cardback = $Cardback
+	_name_label.text = card_name
 	_description_label.text = effect_description
-	_value_label.text = str(cost)
-	_cost_label.text = str(value)
+	_value_label.text = str(value)
+	_cost_label.text = str(cost)
 
 
 

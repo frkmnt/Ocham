@@ -19,11 +19,15 @@ var _card_index = 0
 
 #==== Bootstrap ====#
 
-func initialize(card_id_list):
-	add_cards_to_accordion(card_id_list)
+func initialize(deck):
+	add_cards_by_type(deck)
 	update_cards()
 
-
+func add_cards_by_type(deck):
+	_accordion_container.add_active_cards(deck.get_cards_by_type("active"))
+	_accordion_container.add_growth_cards(deck.get_cards_by_type("growth"))
+	_accordion_container.add_fungi_cards(deck.get_cards_by_type("fungi"))
+	_accordion_container.add_weather_cards(deck.get_cards_by_type("weather"))
 
 #==== Card Accordion ====#
 
@@ -83,7 +87,6 @@ func on_back_button_clicked():
 #==== Arrow Buttons ====#
 
 func on_left_arrow_clicked():
-	print("left, ")
 	if _card_index == 0:
 		return
 	elif _card_index == 1:
@@ -93,7 +96,6 @@ func on_left_arrow_clicked():
 	update_cards()
 
 func on_right_arrow_clicked():
-	print("right, ")
 	var total_pages = get_total_pages()
 	if _card_index == total_pages-1:
 		return

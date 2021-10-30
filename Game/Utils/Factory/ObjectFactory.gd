@@ -17,3 +17,9 @@ const _card_grid = preload("res://GameObjects/Panels/Components/CardGrid/CardGri
 func instance_card_grid():
 	return _card_grid.instance()
 
+
+
+#==== In-Game ====#
+const _in_game_manager = preload("res://GameObjects/Panels/InGame/InGameManager.tscn")
+func instance_in_game_manager():
+	return _in_game_manager.instance()

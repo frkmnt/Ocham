@@ -19,9 +19,8 @@ shape = SubResource( 1 )
 
 [node name="PosTween" type="Tween" parent="."]
 
+[node name="ScaleTween" type="Tween" parent="."]
+
 [node name="FlipTween" type="Tween" parent="."]
 
 [node name="GlowTween" type="Tween" parent="."]
-
-[connection signal="mouse_entered" from="." to="." method="on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="on_mouse_exited"]

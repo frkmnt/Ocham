@@ -1,5 +1,13 @@
 extends Node
 
+#==== Deck Prefab ====#
+const _deck = preload("res://GameObjects/Deck/DeckData/Deck.tscn")
+
+#==== Deck Settings ====#
+var _total_decks = 0
+
+
+
 #==== Card Prefabs ====#
 const _active_card = preload("res://GameObjects/Card/ActiveCard/ActiveCard.tscn")
 const _growth_card = preload("res://GameObjects/Card/GrowthCard/GrowthCard.tscn")
@@ -27,11 +35,14 @@ var _total_cards = 0
 
 
 
+
+
 #==== Bootstrap ====#
 
 func _ready():
 	load_default_cards()
 	_cards_by_value = sort_cards_by_value()
+	create_default_deck_1()
 
 
 func load_default_cards():
@@ -128,7 +139,7 @@ func load_default_active_cards():
 		},
 		{
 		"id": 6,
-		"card_name" : "",
+		"card_name" : "Piranha",
 		"description": "",
 		"rarity": "0",
 		"rarity_name": "Common",
@@ -2390,6 +2401,20 @@ func load_default_growth_cards():
 			"image_id": 0
 			},
 			{
+			"id": 1,
+			"card_name": "Brown Maple",
+			"description": "A quick growing vibrant tree",
+			"rarity": "0",
+			"rarity_name": "Common",
+			"type": "4",
+			"type_name": "Growth",
+			"cost": 0,
+			"value": 1,
+			"effect": 1,
+			"effect_description": "",
+			"image_id": 0
+			},
+			{
 			"id": 2,
 			"card_name": "Rooting Sappling",
 			"description": "Filled with opportunity",
@@ -3061,20 +3086,6 @@ func load_default_growth_cards():
 			"effect_description": "Reveal: Has Shield",
 			"image_id": 0
 			},
-			{
-			"id": 50,
-			"card_name": "Pando",
-			"description": "Extremely resistance to lack of nourishment",
-			"rarity": "0",
-			"rarity_name": "Common",
-			"type": "4",
-			"type_name": "Growth",
-			"cost": 7,
-			"value": "4",
-			"effect": 10,
-			"effect_description": "Passive: While this card is on the growth field, you only lose when you have 7 cards in the extinction deck",
-			"image_id": 0
-		}
 	]
 	
 	var card
@@ -3979,11 +3990,62 @@ func instance_active_card(id):
 	card.initialize(data)
 	return card
 
+func instance_active_card_with_data(data):
+	var card = _active_card.instance()
+	card.initialize(data)
+	return card
+
+
+func instance_growth_card(id):
+	var card = _active_card.instance()
+	var data = _def_growth_cards.get(id)
+	card.initialize(data)
+	return card
+
+func instance_growth_card_with_data(data):
+	var card = _active_card.instance()
+	card.initialize(data)
+	return card
+
+
+func instance_fungi_card(id):
+	var card = _active_card.instance()
+	var data = _def_fungi_cards.get(id)
+	card.initialize(data)
+	return card
+
+func instance_fungi_card_with_data(data):
+	var card = _active_card.instance()
+	card.initialize(data)
+	return card
+
+
+func instance_weather_card(id):
+	var card = _active_card.instance()
+	var data = _def_weather_cards.get(id)
+	card.initialize(data)
+	return card
+
+func instance_weather_card_with_data(data):
+	var card = _active_card.instance()
+	card.initialize(data)
+	return card
+
+
 
 #==== Data ====#
 
 func get_active_card_data(id):
 	return _def_active_cards.get(id)
+
+func get_growth_card_data(id):
+	return _def_growth_cards.get(id)
+
+func get_fungi_card_data(id):
+	return _def_fungi_cards.get(id)
+
+func get_weather_card_data(id):
+	return _def_weather_cards.get(id)
 
 
 #==== Sorting ====#
@@ -3997,3 +4059,51 @@ func sort_cards_by_value():
 
 func get_total_cards():
 	return _total_cards
+
+
+
+#==== Default Decks ====#
+
+func create_new_deck():
+	var deck = _deck.instance()
+	var card_data = {
+		"active": [],
+		"growth": [],
+		"fungi": [],
+		"weather": []
+	}
+	return deck
+
+func create_default_deck_1():
+	var deck = _deck.instance()
+	var deck_name = str("Test Deck")
+	var deck_description = "This is the default deck."
+	deck.initialize_data(deck_name, deck_description)
+	
+	var card_ids = {
+		"active": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ,20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+		"growth": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+		"fungi": [],
+		"weather": []
+	}
+	
+	var deck_data = {}
+	for card_type in card_ids.keys():
+		deck_data[card_type] = []
+		match card_type:
+			"active":
+				for card_id in card_ids[card_type]:
+					deck_data[card_type].append(get_active_card_data(card_id))
+			"growth":
+				for card_id in card_ids[card_type]:
+					deck_data[card_type].append(get_growth_card_data(card_id))
+			"fungi":
+				for card_id in card_ids[card_type]:
+					deck_data[card_type].append(get_fungi_card_data(card_id))
+			"weather":
+				for card_id in card_ids[card_type]:
+					deck_data[card_type].append(get_weather_card_data(card_id))
+	deck.initialize_with_data(deck_data)
+	
+	_total_decks += 1
+	return deck

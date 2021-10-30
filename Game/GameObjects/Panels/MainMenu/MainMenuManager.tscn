@@ -16,9 +16,11 @@ __meta__ = {
 }
 
 [node name="MainPanel" parent="." instance=ExtResource( 2 )]
+margin_right = -18.0
 
 [node name="MainCollectionPanel" parent="." instance=ExtResource( 3 )]
 visible = false
 
 [node name="DeckEditorPanel" parent="." instance=ExtResource( 4 )]
 visible = false
+margin_right = -18.0

@@ -22,6 +22,24 @@ func initialize_deck(deck_info):
 
 #==== Card Management ====#
 
+func add_active_cards(active_card_data):
+	for card_data in active_card_data:
+		_active_acc.add_card(card_data)
+
+func add_growth_cards(growth_card_data):
+	for card_data in growth_card_data:
+		_growth_acc.add_card(card_data)
+
+func add_fungi_cards(fungi_card_data):
+	for card_data in fungi_card_data:
+		_active_acc.add_card(card_data)
+
+func add_weather_cards(weather_card_data):
+	for card_data in weather_card_data:
+		_active_acc.add_card(card_data)
+
+
+
 func add_card(card):
 	add_cards([card])
 
