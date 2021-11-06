@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GameObjects/Panels/InGame/PlayArea/DeckSlot/GrowthDeckSlot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GameObjects/Panels/InGame/PlayArea/DeckSlot/ActiveDeckSlot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GameObjects/Panels/InGame/PlayArea/DeckSlot/DeckSlotContainer.gd" type="Script" id=3]
+
+[node name="DeckSlotContainer" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="OpponentGrowthDeckSlot" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1260, 191 )
+
+[node name="OpponentActiveDeckSlot" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1260, 400 )
+
+[node name="PlayerActiveDeckSlot" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1260, 675 )
+
+[node name="PlayerGrowthDeckSlot" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1260, 884 )
+
+[node name="PlayerActiveAnimTimer" type="Timer" parent="."]
+
+[node name="PlayerGrowthAnimTimer" type="Timer" parent="."]
+
+[node name="OpponentActiveAnimTimer" type="Timer" parent="."]
+
+[node name="OpponentGrowthAnimTimer" type="Timer" parent="."]

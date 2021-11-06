@@ -36,11 +36,6 @@ func add_card(card):
 	_card_list.append(card)
 	add_child(card)
 
-func add_card_list(card_list):
-	pass
-
-func remove_card(index):
-	pass
 
 func remove_all_cards():
 	_card_list = []
@@ -164,6 +159,7 @@ func position_cards():
 		card_h = card.get_card_height()
 		card.position.y = (y_idx * card_h) + (card_h / 2) + (y_idx * vgap)
 		card._interaction_handler._order = i
+		card._interaction_handler._locked = true
 		card.z_index = i
 		i += 1
 

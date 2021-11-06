@@ -1,8 +1,5 @@
 extends Area2D
 
-#==== Signals ====#
-signal card_effect_resize_font
-
 #==== References ====#
 onready var _card = get_parent()
 
@@ -11,24 +8,22 @@ onready var _pos_tween = $PosTween
 onready var _scale_tween = $ScaleTween
 onready var _flip_tween = $FlipTween
 onready var _glow_tween = $GlowTween
+onready var _fade_tween = $FadeTween
 
 #==== Settings ====#
 var _locked = true # if true, the card cannot be dragged
 var _snapback = true # if the card should snapback to its original pos after left release
-var _in_game = false # if the card is in an in-game scenario
+var _flipped = false # if the cardback is visible
+var _can_target = false # 
+var _is_opponent_card = false
 
 #==== Variables ====#
 var _order = 0 # order in which the card should be rendered
 
-var _mouse_entered = false
-var _left_mouse_down = false
-var _right_mouse_down = false
-var _has_moved = false
-var _is_snapping = false
 
 var _original_pos = Vector2(0, 0) # position before being clicked
 var _original_scale = Vector2(0, 0) # position before being clicked
-var _relative_pos = Vector2(0, 0) # relative to the mouse position
+var _mouse_offset_pos = Vector2(0, 0) # relative to the mouse position
 
 var _flip_scale = Vector2(0, 0)
 
@@ -36,28 +31,9 @@ var _flip_scale = Vector2(0, 0)
 
 #==== Bootstrap ====#
 
-func _initialize():
-	resize_font()
-	_original_pos = _card.position
-	
+func _ready():
 	_original_scale = _card.scale
-
-
-#==== Process ====#
-
-func _process(delta):
-	if _is_snapping:
-		pass
-
-
-
-#==== State ====#
-
-func is_clickable():
-	var is_clickable = true
-	if _pos_tween.is_active():
-		is_clickable = false
-	return is_clickable
+	resize_font()
 
 
 
@@ -66,56 +42,69 @@ func is_clickable():
 #==== Mouse Events ====#
 
 func on_mouse_entered():
-	_mouse_entered = true
 	apply_glow()
+	if not _locked and not _is_opponent_card:
+		var new_pos = Vector2(_card.position.x, _card.position.y-_card.get_card_height()/2)
+		interp_to_position(new_pos, 0.5)
 
 func on_mouse_exited():
-	_mouse_entered = false
 	cancel_glow()
+	if not _locked and not _is_opponent_card:
+		interp_to_original_position(0.5)
 
 
 
 func on_left_click(event):
-	_left_mouse_down = true
-	_original_pos = _card.position
-	_relative_pos = event.position - _card.position
+	_pos_tween.stop_all()
+	_mouse_offset_pos = event.position - _card.global_position
 	_card._container.on_card_click(_card)
 
-func on_left_release():
-	_left_mouse_down = false
-	if _snapback:
-		_is_snapping = true
-		_pos_tween.interpolate_property(_card, "position", _card.position, _original_pos, 
-		0.5, Tween.TRANS_BACK, Tween.EASE_OUT, 0)
-		_pos_tween.start()
 
 func on_right_click():
-	flip_to_back()
-#	scale_interp(Vector2(0.3, 0.3))
+	return
 
 
 func on_mouse_motion(event):
 	if not _locked:
-		_card.position = event.position - _relative_pos
+		_pos_tween.stop_all()
+		_card.global_position = event.position - _mouse_offset_pos
 
 
 
 
 #==== Animation ====#
 
-func play_flip_anim():
-	pass
+func set_flipped(is_flipped):
+	if is_flipped:
+		_card._frame._cardback.visible = true
+	else:
+		_card._frame._cardback.visible = false
 
-func flip_to_back():
+func flip_to_back(callback):
+	_flipped = true
 	_flip_scale = _card.scale
 	_flip_tween.interpolate_property(_card, "scale", _card.scale, Vector2(0.0, _card.scale.y), 
-		0.5, Tween.EASE_OUT, Tween.EASE_IN, 0)
-	_flip_tween.interpolate_callback(self, 0.5, "finish_flip_to_back")
+		0.25, Tween.EASE_OUT, Tween.EASE_IN, 0)
+	_flip_tween.interpolate_callback(self, 0.25, callback)
+	_flip_tween.start()
+
+func finish_flip_to_back(): # 2 part anim
+	self._card._frame._cardback.visible = true
+	_flip_tween.interpolate_property(_card, "scale", _card.scale, _flip_scale, 
+		0.25, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
 	_flip_tween.start()
 
 
-func finish_flip_to_back(): # 2 part anim
-	self._card._card_frame._cardback.visible = true
+func flip_to_front(callback):
+	_flipped = false
+	_flip_scale = _card.scale
+	_flip_tween.interpolate_property(_card, "scale", _card.scale, Vector2(0.0, _card.scale.y), 
+		0.5, Tween.EASE_OUT, Tween.EASE_IN, 0)
+	_flip_tween.interpolate_callback(self, 0.5, callback)
+	_flip_tween.start()
+
+func finish_flip_to_front(): # 2 part anim
+	self._card._frame._cardback.visible = false
 	_flip_tween.interpolate_property(_card, "scale", _card.scale, _flip_scale, 
 		0.25, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
 	_flip_tween.start()
@@ -123,18 +112,53 @@ func finish_flip_to_back(): # 2 part anim
 
 
 
-func flip_to_front():
-	pass
+func add_to_hand_anim(new_scale):
+	scale_card(new_scale)
+	set_flipped(true)
+	flip_to_front("finish_flip_from_deck")
+
+func opponent_add_to_hand_anim(new_scale):
+	scale_card(new_scale)
+	set_flipped(true)
+	opponent_move_to_hand()
+
+func finish_flip_from_deck():
+	set_flipped(false)
+	var hand_scale = _card._container._desired_scale
+	_flip_tween.interpolate_property(_card, "scale", _card.scale, hand_scale, 
+		0.25, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
+	_flip_tween.interpolate_callback(self, 0.5, "move_to_hand")
+	_flip_tween.start()
+
+func move_to_hand():
+	var hand_scale = _card._container._desired_scale
+	_flip_tween.interpolate_property(_card, "scale", _card.scale, hand_scale, 
+		0.25, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
+	_flip_tween.interpolate_callback(self, 0.5, "finish_hand_animation")
+	_flip_tween.start()
+	_card._container.position_cards_correctly_interp()
+
+func opponent_move_to_hand():
+	var hand_scale = _card._container._desired_scale
+	_flip_tween.interpolate_property(_card, "scale", _card.scale, hand_scale, 
+		0.25, Tween.TRANS_LINEAR, Tween.EASE_OUT, 0)
+	_flip_tween.interpolate_callback(self, 0.5, "finish_hand_animation")
+	_flip_tween.start()
+	_card._container.position_cards_correctly_interp()
+
+
+func finish_hand_animation():
+	_locked = false
 
 
 
 #==== Glow ====#
 
 func apply_glow():
-	_card._card_frame.apply_glow()
+	_card._frame.apply_glow()
 
 func cancel_glow():
-	_card._card_frame.cancel_glow()
+	_card._frame.cancel_glow()
 
 
 #==== Z Order ====#
@@ -146,48 +170,75 @@ func set_original_z_index():
 
 #==== Position ====#
 
-func interp_to_original_position():
-	_is_snapping = true
+func interp_to_original_position(anim_dur):
 	_pos_tween.interpolate_property(_card, "position", _card.position, _original_pos, 
-	0.5, Tween.TRANS_BACK, Tween.EASE_OUT, 0)
+	anim_dur, Tween.TRANS_BACK, Tween.EASE_OUT, 0)
 	_pos_tween.start()
 
-func interp_to_position(new_pos):
-	_is_snapping = true
+func interp_to_position(new_pos, anim_dur):
 	_pos_tween.interpolate_property(_card, "position", _card.position, new_pos, 
-	0.5, Tween.TRANS_BACK, Tween.EASE_OUT, 0)
+	anim_dur, Tween.TRANS_BACK, Tween.EASE_OUT, 0)
 	_pos_tween.start()
 
-func interp_to_global_position(new_pos):
-	_is_snapping = true
+func interp_to_global_position(new_pos, anim_dur):
 	_pos_tween.interpolate_property(_card, "global_position", _card.global_position, new_pos, 
-	0.5, Tween.TRANS_BACK, Tween.EASE_OUT, 0)
+	anim_dur, Tween.TRANS_BACK, Tween.EASE_OUT, 0)
 	_pos_tween.start()
 
 
 #==== Scale ====#
 
 func scale_card(new_scale):
-	_card.scale = new_scale
+	_card.set_scale(new_scale)
 	resize_font()
 
 func scale_interp_to_original():
 	_flip_tween.interpolate_property(_card, "scale", _card.scale, _original_scale, 
 		0.5, Tween.EASE_OUT, Tween.EASE_IN, 0)
-#	_flip_tween.interpolate_callback(self, 0.5, "finish_flip_to_back") TODO add signal
 	_flip_tween.start()
+	resize_font_target_scale(_original_scale)
 
 func scale_interp(target_scale):
 	_flip_tween.interpolate_property(_card, "scale", _card.scale, target_scale, 
 		0.5, Tween.EASE_OUT, Tween.EASE_IN, 0)
-#	_flip_tween.interpolate_callback(self, 0.5, "finish_flip_to_back") TODO add signal
 	_flip_tween.start()
+	resize_font_target_scale(target_scale)
+
+
+
+#==== Fade ====#
+
+func play_fade_out(callback):
+	if not is_instance_valid(_card):
+		return
+	var new_modulate = _card.modulate
+	new_modulate.a = 0.0
+	_fade_tween.interpolate_property(_card, "modulate", _card.modulate, new_modulate, 
+		0.75, Tween.EASE_OUT, Tween.EASE_IN, 0)
+	_fade_tween.interpolate_callback(self, 0.5, callback)
+	_fade_tween.start()
+
+
+func remove_card():
+	_card.queue_free()
+
+
+#==== Card Slot ====#
+
+func set_on_card_slot():
+	if _card._container:
+		_card._container.set_card_on_card_slot(_card)
+
+
 
 
 #==== Font ====#
 
 func resize_font():
 	CardManager.resize_font(_card)
+
+func resize_font_target_scale(target_scale):
+	CardManager.resize_font_target_scale(_card, target_scale)
 
 
 

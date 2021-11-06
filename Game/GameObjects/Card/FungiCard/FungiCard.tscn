@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GameObjects/Card/Components/InteractionHandler/InteractionHandler.tscn" type="PackedScene" id=1]
-[ext_resource path="res://GameObjects/Card/FungiCard/FungiCard.gd" type="Script" id=2]
+[ext_resource path="res://GameObjects/Card/Card.gd" type="Script" id=2]
 [ext_resource path="res://GameObjects/Card/FungiCard/Data/FungiData.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GameObjects/Card/FungiCard/Frame/FungiFrame.tscn" type="PackedScene" id=4]
 
 [node name="FungiCard" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="FungiFrame" parent="." instance=ExtResource( 4 )]
+[node name="Frame" parent="." instance=ExtResource( 4 )]
 
-[node name="FungiData" parent="." instance=ExtResource( 3 )]
+[node name="Data" parent="." instance=ExtResource( 3 )]
 
 [node name="InteractionHandler" parent="." instance=ExtResource( 1 )]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Assets/Fonts/Collection/CardAccordionItemValueFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/Styles/Collection/CardAccordionItemValueFont.tres" type="DynamicFont" id=1]
 
 [node name="NftFilterButton" type="Button"]
 self_modulate = Color( 0.596078, 0.956863, 0.435294, 1 )

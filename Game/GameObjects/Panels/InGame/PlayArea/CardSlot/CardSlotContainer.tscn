@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://GameObjects/Panels/InGame/PlayArea/CardSlot/CardSlot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GameObjects/Panels/InGame/PlayArea/CardSlot/CardSlotContainer.gd" type="Script" id=2]
 
 [node name="CardSlotContainer" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="PlayerGrowth1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 684, 884 )
@@ -15,27 +17,38 @@ position = Vector2( 1006, 884 )
 
 [node name="PlayerActive1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 684, 675 )
+_is_playable_slot = true
 
 [node name="PlayerActive2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 845, 675 )
+_is_playable_slot = true
 
 [node name="PlayerActive3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1006, 675 )
+_is_playable_slot = true
 
 [node name="OpponentGrowth1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1006, 191 )
+_is_attackable_growth_slot = true
 
 [node name="OpponentGrowth2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 845, 191 )
+_is_attackable_growth_slot = true
 
 [node name="OpponentGrowth3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 684, 191 )
+_is_attackable_growth_slot = true
 
 [node name="OpponentActive1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1006, 400 )
+_is_attackable_active_slot = true
 
 [node name="OpponentActive2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 845, 400 )
+_is_attackable_active_slot = true
 
 [node name="OpponentActive3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 684, 400 )
+_is_attackable_active_slot = true
+
+[node name="AnimTimer" type="Timer" parent="."]

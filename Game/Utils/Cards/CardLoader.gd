@@ -15,10 +15,11 @@ const _fungi_card = preload("res://GameObjects/Card/FungiCard/FungiCard.tscn")
 const _weather_card = preload("res://GameObjects/Card/WeatherCard/WeatherCard.tscn")
 
 #==== Sorted Lists ====#
-var _cards_by_value = []
+var _cards_by_value = [] # TODO implement
+var _nft_dict = {} # id
 
 #==== Active Data ====#
-var _active_type_ids = [
+var _rarity_type_ids = [
 	"Common", 
 	"Uncommon", 
 	"Rare",
@@ -26,12 +27,17 @@ var _active_type_ids = [
 	"Legendary"
 ]
 
+
+
+
 #==== Default Cards ====#
 var _def_active_cards = {}
 var _def_growth_cards = {}
 var _def_fungi_cards = {}
 var _def_weather_cards = {}
+var _def_nft_cards = {}
 var _total_cards = 0
+var _total_nft_cards = 0
 
 
 
@@ -50,6 +56,7 @@ func load_default_cards():
 	load_default_growth_cards()
 	load_default_fungi_cards()
 	load_default_weather_cards()
+	load_nft_cards([])
 
 
 func load_default_active_cards():
@@ -2378,7 +2385,6 @@ func load_default_active_cards():
 		"image_id": 0
 		},
 	]
-	var card
 	for card_data in active_dict:
 		_def_active_cards[card_data.id] = card_data
 		_total_cards += 1
@@ -3088,7 +3094,6 @@ func load_default_growth_cards():
 			},
 	]
 	
-	var card
 	for card_data in growth_dict:
 		_def_growth_cards[card_data.id] = card_data
 		_total_cards += 1
@@ -3531,7 +3536,6 @@ func load_default_fungi_cards():
 			"image_id": 0
 		}
 	]
-	var card
 	for card_data in fungi_dict:
 		_def_fungi_cards[card_data.id] = card_data
 		_total_cards += 1
@@ -3974,7 +3978,6 @@ func load_default_weather_cards():
 		"image_id": 0
 		}
 	]
-	var card
 	for card_data in weather_dict:
 		_def_weather_cards[card_data.id] = card_data
 		_total_cards += 1
@@ -3987,6 +3990,12 @@ func load_default_weather_cards():
 func instance_active_card(id):
 	var card = _active_card.instance()
 	var data = _def_active_cards.get(id)
+	card.initialize(data)
+	return card
+
+func instance_nft_card(id):
+	var card = _active_card.instance()
+	var data = _def_nft_cards.get(id)
 	card.initialize(data)
 	return card
 
@@ -4003,19 +4012,19 @@ func instance_growth_card(id):
 	return card
 
 func instance_growth_card_with_data(data):
-	var card = _active_card.instance()
+	var card = _growth_card.instance()
 	card.initialize(data)
 	return card
 
 
 func instance_fungi_card(id):
-	var card = _active_card.instance()
+	var card = _fungi_card.instance()
 	var data = _def_fungi_cards.get(id)
 	card.initialize(data)
 	return card
 
 func instance_fungi_card_with_data(data):
-	var card = _active_card.instance()
+	var card = _weather_card.instance()
 	card.initialize(data)
 	return card
 
@@ -4066,12 +4075,6 @@ func get_total_cards():
 
 func create_new_deck():
 	var deck = _deck.instance()
-	var card_data = {
-		"active": [],
-		"growth": [],
-		"fungi": [],
-		"weather": []
-	}
 	return deck
 
 func create_default_deck_1():
@@ -4082,7 +4085,7 @@ func create_default_deck_1():
 	
 	var card_ids = {
 		"active": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ,20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
-		"growth": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+		"growth": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		"fungi": [],
 		"weather": []
 	}
@@ -4107,3 +4110,49 @@ func create_default_deck_1():
 	
 	_total_decks += 1
 	return deck
+
+
+
+
+
+
+
+
+
+
+
+func load_nft_cards(nft_data_list):
+	nft_data_list = [
+		{
+		"rarity": 2,
+		"cost": 4,
+		"value": 1,
+		"effect": 18,
+		},
+	]
+	for nft_data in nft_data_list:
+		assign_active_card_from_nft(nft_data)
+
+
+
+func assign_active_card_from_nft(nft_data):
+	_total_cards += 1
+	_total_nft_cards += 1
+	var id = _total_cards
+	var card_data = {
+		"id": id,
+		"card_name": "NFT " + str(_total_nft_cards),
+		"description": "",
+		"rarity": nft_data.rarity,
+		"rarity_name": _rarity_type_ids[nft_data.rarity],
+		"type": 0,
+		"type_name": "Active",
+		"cost": nft_data.cost,
+		"value": nft_data.value,
+		"effect": nft_data.effect,
+		"effect_description": EffectManager._effect_data.get(nft_data.effect),
+		"image_id": 0
+	}
+	_def_active_cards[id] = card_data
+	_def_nft_cards[_total_nft_cards-1] = card_data
+

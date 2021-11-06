@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Fonts/Styles/InGame/AnnouncementLabelStyle.tres" type="DynamicFont" id=1]
+[ext_resource path="res://GameObjects/Panels/InGame/AnnouncementLabel/AnnouncementContainer.gd" type="Script" id=2]
+
+[node name="AnnouncementContainer" type="CenterContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 1920.0
+margin_bottom = 109.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnnouncementLabel" type="Label" parent="."]
+margin_left = 806.0
+margin_right = 1114.0
+margin_bottom = 109.0
+rect_min_size = Vector2( 308, 109 )
+custom_fonts/font = ExtResource( 1 )
+text = "Round 1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PosTween" type="Tween" parent="AnnouncementLabel"]
+
+[node name="FadeTween" type="Tween" parent="AnnouncementLabel"]
+
+[node name="AnimTimer" type="Timer" parent="AnnouncementLabel"]

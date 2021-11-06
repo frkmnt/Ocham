@@ -24,3 +24,5 @@ shape = SubResource( 1 )
 [node name="FlipTween" type="Tween" parent="."]
 
 [node name="GlowTween" type="Tween" parent="."]
+
+[node name="FadeTween" type="Tween" parent="."]

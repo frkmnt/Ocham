@@ -8,6 +8,7 @@ onready var _card_grid = $CardGrid
 onready var _accordion_container = $AccordionContainer
 onready var _left_button = $LeftButton
 onready var _right_button = $RightButton
+onready var _filter_nft_button = $FilterNftButton
 
 #==== Variables ====#
 const _cards_per_page = 8
@@ -84,7 +85,7 @@ func on_back_button_clicked():
 
 
 
-#==== Arrow Buttons ====#
+#==== Buttons ====#
 
 func on_left_arrow_clicked():
 	if _card_index == 0:
@@ -104,6 +105,32 @@ func on_right_arrow_clicked():
 	_left_button.visible = true
 	_card_index += 1
 	update_cards()
+
+
+func on_filter_nft_button():
+	_card_index = 0
+	if _filter_nft_button.pressed:
+		display_nft_cards()
+	else:
+		update_cards()
+
+
+
+func display_nft_cards():
+	# takes the cur card_index to determine what cards should be rendered
+	_card_grid.remove_all_cards()
+	var from = _card_index * _cards_per_page 
+	var to = ((_card_index + 1) * _cards_per_page)
+
+	var total_cards = CardLoader._total_nft_cards
+	if to > total_cards:
+		to = total_cards
+
+	var card
+	for idx in range(from, to):
+		card = CardLoader.instance_nft_card(idx)
+		_card_grid.add_card(card)
+	_card_grid.position_cards_correctly()
 
 
 

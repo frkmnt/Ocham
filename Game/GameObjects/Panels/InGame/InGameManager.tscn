@@ -1,12 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://GameObjects/Panels/InGame/PlayArea/PlayArea.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GameObjects/Panels/InGame/PlayArea/ExtinctionSlot/ExtinctionSlotContainer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameObjects/Panels/InGame/InGameManager.gd" type="Script" id=2]
 [ext_resource path="res://GameObjects/Panels/InGame/Hand/Hand.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GameObjects/Panels/InGame/PlayArea/Decoration/DecorationManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GameObjects/Panels/InGame/PlayArea/CardSlot/CardSlotContainer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://GameObjects/Panels/Components/OptionsButton/OptionsButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://GameObjects/Panels/InGame/PlayArea/DeckSlot/DeckSlotContainer.tscn" type="PackedScene" id=7]
+[ext_resource path="res://GameObjects/Panels/InGame/PlayArea/PileSlot/PileSlotContainer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://GameObjects/Panels/InGame/EndTurnButton/EndTurnButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://GameObjects/Panels/InGame/AnnouncementLabel/AnnouncementContainer.tscn" type="PackedScene" id=10]
+[ext_resource path="res://GameObjects/Panels/InGame/Mana/ManaContainer.tscn" type="PackedScene" id=11]
+[ext_resource path="res://GameObjects/Panels/InGame/CardManager/InGameCardManager.tscn" type="PackedScene" id=12]
 
-[node name="InGameManager" type="Control"]
+[node name="InGameManager" type="Control" groups=[
+"in_game_manager",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -15,13 +24,49 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="InGameCardManager" parent="." instance=ExtResource( 12 )]
+
 [node name="DecorationManager" parent="." instance=ExtResource( 4 )]
+z_index = -20
 
-[node name="PlayArea" parent="." instance=ExtResource( 1 )]
+[node name="ExtinctionSlotContainer" parent="." instance=ExtResource( 1 )]
+z_index = -19
 
-[node name="PlayerHand" parent="." instance=ExtResource( 3 )]
-position = Vector2( 960, 1200 )
-_width = 1500
-_height = 1200
+[node name="DeckSlotContainer" parent="." instance=ExtResource( 7 )]
+z_index = -15
+
+[node name="PileSlotContainer" parent="." instance=ExtResource( 8 )]
+z_index = -17
 
 [node name="CardSlotContainer" parent="." instance=ExtResource( 5 )]
+z_index = -20
+
+[node name="ManaContainer" parent="." instance=ExtResource( 11 )]
+z_index = -15
+
+[node name="OpponentHand" parent="." instance=ExtResource( 3 )]
+position = Vector2( 960, -75 )
+z_index = -14
+_width = 1920
+_height = 1200
+
+[node name="PlayerHand" parent="." instance=ExtResource( 3 )]
+position = Vector2( 960, 1150 )
+_width = 1920
+_height = 1200
+
+[node name="OptionsButton" parent="." instance=ExtResource( 6 )]
+margin_left = 1860.0
+margin_top = 10.0
+margin_right = 1910.0
+margin_bottom = 60.0
+
+[node name="EndTurnButton" parent="." instance=ExtResource( 9 )]
+margin_left = 1680.0
+margin_top = 505.0
+margin_right = 1910.0
+margin_bottom = 575.0
+
+[node name="AnnouncementContainer" parent="." instance=ExtResource( 10 )]
+
+[node name="AnimTimer" type="Timer" parent="."]

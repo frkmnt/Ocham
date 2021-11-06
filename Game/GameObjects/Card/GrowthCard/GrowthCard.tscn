@@ -3,13 +3,13 @@
 [ext_resource path="res://GameObjects/Card/GrowthCard/Frame/GrowthFrame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameObjects/Card/GrowthCard/Data/GrowthData.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GameObjects/Card/Components/InteractionHandler/InteractionHandler.tscn" type="PackedScene" id=3]
-[ext_resource path="res://GameObjects/Card/GrowthCard/GrowthCard.gd" type="Script" id=6]
+[ext_resource path="res://GameObjects/Card/Card.gd" type="Script" id=4]
 
 [node name="GrowthCard" type="Node2D"]
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 
-[node name="GrowthFrame" parent="." instance=ExtResource( 1 )]
+[node name="Frame" parent="." instance=ExtResource( 1 )]
 
-[node name="GrowthData" parent="." instance=ExtResource( 2 )]
+[node name="Data" parent="." instance=ExtResource( 2 )]
 
 [node name="InteractionHandler" parent="." instance=ExtResource( 3 )]

@@ -11,7 +11,7 @@ texture = ExtResource( 2 )
 position = Vector2( 5, 0 )
 texture = ExtResource( 3 )
 
-[node name="CostLabel" parent="Frame" instance=ExtResource( 1 )]
+[node name="ValueLabel" parent="Frame" instance=ExtResource( 1 )]
 margin_left = -21.0
 margin_top = -40.0
 margin_right = 11.0

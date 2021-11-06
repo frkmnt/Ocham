@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Assets/Fonts/MainMenu/ButtonFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/Styles/MainMenu/ButtonFont.tres" type="DynamicFont" id=1]
 
 [node name="MainMenuButton" type="Button"]
 modulate = Color( 0.623529, 0.839216, 0.541176, 1 )

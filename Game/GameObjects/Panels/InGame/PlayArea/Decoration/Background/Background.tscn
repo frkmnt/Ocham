@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Assets/Graphics/InGame/Decoration/Background/main_bg.jpg" type="Texture" id=1]
+[ext_resource path="res://Assets/Graphics/InGame/Decoration/Background/004_02.jpg" type="Texture" id=1]
 
 [node name="Background" type="Sprite"]
 texture = ExtResource( 1 )

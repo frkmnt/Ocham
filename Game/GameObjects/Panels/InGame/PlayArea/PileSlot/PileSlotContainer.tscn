@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GameObjects/Panels/InGame/PlayArea/PileSlot/PileSlot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GameObjects/Panels/InGame/PlayArea/PileSlot/PileSlotContainer.gd" type="Script" id=2]
+
+[node name="PileSlotContainer" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="OpponentGrowthPile" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1421, 191 )
+
+[node name="OpponentActivePile" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1421, 400 )
+
+[node name="PlayerActivePile" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1421, 675 )
+
+[node name="PlayerGrowthPile" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1421, 884 )
