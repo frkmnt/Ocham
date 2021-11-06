@@ -208,14 +208,14 @@ func scale_interp(target_scale):
 
 #==== Fade ====#
 
-func play_fade_out(callback):
+func play_fade_out(duration, callback):
 	if not is_instance_valid(_card):
 		return
 	var new_modulate = _card.modulate
 	new_modulate.a = 0.0
 	_fade_tween.interpolate_property(_card, "modulate", _card.modulate, new_modulate, 
-		0.75, Tween.EASE_OUT, Tween.EASE_IN, 0)
-	_fade_tween.interpolate_callback(self, 0.5, callback)
+		duration, Tween.EASE_OUT, Tween.EASE_IN, 0)
+	_fade_tween.interpolate_callback(self, duration, callback)
 	_fade_tween.start()
 
 

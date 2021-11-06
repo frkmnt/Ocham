@@ -42,6 +42,7 @@ func draw_player_growth_cards(total_cards):
 func on_player_growth_timer_tick(total_cards):
 	if total_cards > 0:
 		_parent.draw_player_growth_card(3-total_cards)
+		_player_growth_deck.draw_card()
 		total_cards -= 1
 		_player_growth_timer.disconnect("timeout", self, "on_player_growth_timer_tick") 
 		_player_growth_timer.connect("timeout", self, "on_player_growth_timer_tick", [total_cards])
@@ -61,6 +62,7 @@ func draw_player_active_cards(total_cards):
 func on_player_active_timer_tick(total_cards):
 	if total_cards > 0:
 		_parent.draw_player_active_card()
+		_player_active_deck.draw_card()
 		total_cards -= 1
 		_player_active_timer.disconnect("timeout", self, "on_player_active_timer_tick") 
 		_player_active_timer.connect("timeout", self, "on_player_active_timer_tick", [total_cards])
@@ -83,6 +85,7 @@ func draw_opponent_growth_cards(total_cards):
 func on_opponent_growth_timer_tick(total_cards):
 	if total_cards > 0:
 		_parent.draw_opponent_growth_card(3-total_cards)
+		_opponent_growth_deck.draw_card()
 		total_cards -= 1
 		_opponent_growth_timer.disconnect("timeout", self, "on_opponent_growth_timer_tick") 
 		_opponent_growth_timer.connect("timeout", self, "on_opponent_growth_timer_tick", [total_cards])
@@ -102,6 +105,7 @@ func draw_opponent_active_cards(total_cards):
 func on_opponent_active_timer_tick(total_cards):
 	if total_cards > 0:
 		_parent.draw_opponent_active_card()
+		_opponent_active_deck.draw_card()
 		total_cards -= 1
 		_opponent_active_timer.disconnect("timeout", self, "on_opponent_active_timer_tick") 
 		_opponent_active_timer.connect("timeout", self, "on_opponent_active_timer_tick", [total_cards])

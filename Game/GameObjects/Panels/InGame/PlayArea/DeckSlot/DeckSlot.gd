@@ -35,5 +35,8 @@ func calculate_card_scale():
 
 #==== Card Management ====#
 
+func draw_card():
+	_total_cards_label.text = str(int(_total_cards_label.text) - 1)
+
 func update_total_cards(new_qty):
 	_total_cards_label.text = str(new_qty)

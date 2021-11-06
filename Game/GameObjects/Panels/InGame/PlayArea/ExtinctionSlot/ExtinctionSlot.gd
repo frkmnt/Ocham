@@ -36,6 +36,7 @@ func set_card_on_slot_from_board(card):
 	interaction_handler.flip_to_back("finish_flip_to_back")
 	interaction_handler.interp_to_global_position(global_position, 0.75)
 	interaction_handler._locked = true
+	_label.text = str(int(_label.text) + 1)
 
 
 

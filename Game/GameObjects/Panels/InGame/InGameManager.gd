@@ -46,6 +46,11 @@ func initialize(deck):
 func get_first_player():
 	_player_turn = true # TODO add random 50/50
 
+
+
+
+#==== Draw Growth Cards ====#
+
 func draw_initial_growth_cards():
 	_deck_slot_container.draw_player_growth_cards(3)
 	_deck_slot_container.draw_opponent_growth_cards(3)
@@ -65,6 +70,7 @@ func draw_player_growth_card(idx):
 	var start_pos = _deck_slot_container._player_growth_deck.position
 	var card_slot = _card_slot_container.get_player_growth_slot(idx)
 	card_slot.set_card_on_slot_from_deck(card, start_pos, start_scale)
+	_deck_slot_container._player_growth_deck.draw_card()
 
 func draw_opponent_growth_card(idx):
 	var card_data = _deck.draw_growth_card()
@@ -73,7 +79,12 @@ func draw_opponent_growth_card(idx):
 	var start_pos = _deck_slot_container._opponent_growth_deck.position
 	var card_slot = _card_slot_container.get_opponent_growth_slot(idx)
 	card_slot.set_card_on_slot_from_deck(card, start_pos, start_scale)
+	_deck_slot_container._opponent_growth_deck.draw_card()
 
+
+
+
+#==== Draw Active Cards ====#
 
 func draw_active_card():
 	if _player_turn:
@@ -90,19 +101,25 @@ func draw_player_active_card():
 	var card = create_new_card(card_data)
 	_player_hand.add_card_from_deck(card)
 	card.global_position = _deck_slot_container._player_active_deck.global_position
+	_deck_slot_container._opponent_active_deck.draw_card()
 	var start_scale = _deck_slot_container.get_card_scale()
 	card._interaction_handler.add_to_hand_anim(start_scale)
+	_deck_slot_container._player_active_deck.draw_card()
 
 func draw_opponent_active_card():
 	var card_data = _deck.draw_active_card()
 	var card = create_new_card(card_data)
 	_opponent_hand.add_card_from_deck(card)
 	card.global_position = _deck_slot_container._opponent_active_deck.global_position
+	_deck_slot_container._opponent_active_deck.draw_card()
 	var start_scale = _deck_slot_container.get_card_scale()
 	var interaction_handler = card._interaction_handler
 	interaction_handler.opponent_add_to_hand_anim(start_scale)
 	interaction_handler._locked = true
 	interaction_handler._is_opponent_card = true
+
+
+
 
 
 
@@ -268,17 +285,21 @@ func attack_growth(attacker, target):
 
 
 func on_active_card_defeated_stage_1(card):
-	_extinction_slot_container.send_player_growth_to_extinction(card)
+	if _player_turn:
+		_pile_slot_container.send_player_active_card(card)
+	else:
+		_pile_slot_container.send_opponent_active_card(card)
 	start_timer(0.75, "on_active_card_defeated_stage_2", [card])
 
 
 func on_active_card_defeated_stage_2(card):
 	card._frame._animations.play("defeat")
-	card._interaction_handler.play_fade_out("remove_card")
+	card._interaction_handler.play_fade_out(1.5, "remove_card")
 
 
 func on_growth_card_defeated(card):
-	print(card, " was defeated growth")
+	_extinction_slot_container.send_player_growth_to_extinction(card)
+	start_timer(0.75, "on_active_card_defeated_stage_2", [card])
 
 
 

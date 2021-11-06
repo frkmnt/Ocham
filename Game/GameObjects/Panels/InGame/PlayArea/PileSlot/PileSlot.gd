@@ -1,37 +1,47 @@
 extends Area2D
 
 #==== Components ====#
-onready var _shape = $CollisionShape2D
-onready var _total_cards_label = $TotalCardsLabel
-
-#==== Components ====#
-onready var _card_back = $CardBack
+onready var _cardback = $Cardback
+onready var _label = $CenterContainer/Label
 
 #==== References ====#
-var _card = null
+var _card
 
 #==== Variables ====#
 var _size 
 var _margin = 0.03
 
-#==== Logic ====#
-var _card_list = []
 
 
-#==== Bootstrap ====#
+#==== Card Management ====#
 
-func _ready():
-	_size = _shape.shape.extents * 2
-	resize_card_back()
+func update_total_cards(total_cards):
+	_label.text = str(total_cards)
 
-func resize_card_back():
-	var new_scale = _size / _card_back.texture.get_size()
-#	new_scale -= new_scale * _margin
-	_card_back.scale = new_scale
+func set_cardback_visibility(visibility):
+	_cardback.visible = visibility
 
 
 
 #==== Card Management ====#
 
-func update_total_cards(new_qty):
-	_total_cards_label.text = str(new_qty)
+func set_card_on_slot_from_board(card):
+	_card = card
+	var interaction_handler = _card._interaction_handler
+	var prev_pos = _card.global_position
+	interaction_handler.set_on_card_slot()
+	_card.get_parent().remove_child(_card)
+	add_child(_card)
+	_card.global_position = prev_pos
+	interaction_handler.flip_to_back("finish_flip_to_back")
+	interaction_handler.interp_to_global_position(global_position, 0.75)
+	interaction_handler._locked = true
+	_label.text = str(int(_label.text) + 1)
+
+
+
+#==== Card Interaction ====#
+
+func on_card_click(_new_card):
+	return
+
