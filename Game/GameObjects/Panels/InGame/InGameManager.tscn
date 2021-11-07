@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://GameObjects/Panels/InGame/PlayArea/ExtinctionSlot/ExtinctionSlotContainer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameObjects/Panels/InGame/InGameManager.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://GameObjects/Panels/InGame/AnnouncementLabel/AnnouncementContainer.tscn" type="PackedScene" id=10]
 [ext_resource path="res://GameObjects/Panels/InGame/Mana/ManaContainer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://GameObjects/Panels/InGame/CardManager/InGameCardManager.tscn" type="PackedScene" id=12]
+[ext_resource path="res://GameObjects/Panels/InGame/PlayArea/Avatar/AvatarContainer.tscn" type="PackedScene" id=13]
 
 [node name="InGameManager" type="Control" groups=[
 "in_game_manager",
@@ -70,3 +71,5 @@ margin_bottom = 575.0
 [node name="AnnouncementContainer" parent="." instance=ExtResource( 10 )]
 
 [node name="AnimTimer" type="Timer" parent="."]
+
+[node name="AvatarContainer" parent="." instance=ExtResource( 13 )]
