@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/draw_growth_card.mp3-4a4b7a606f352f475d8b2342be774b18.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/InGame/draw_growth_card.mp3"
+dest_files=[ "res://.import/draw_growth_card.mp3-4a4b7a606f352f475d8b2342be774b18.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

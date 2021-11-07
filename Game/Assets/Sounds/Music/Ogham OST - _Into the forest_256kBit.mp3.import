@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ogham OST - _Into the forest_256kBit.mp3-e5cd2272bbc465a5d8bf09562937e588.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Music/Ogham OST - _Into the forest_256kBit.mp3"
+dest_files=[ "res://.import/Ogham OST - _Into the forest_256kBit.mp3-e5cd2272bbc465a5d8bf09562937e588.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

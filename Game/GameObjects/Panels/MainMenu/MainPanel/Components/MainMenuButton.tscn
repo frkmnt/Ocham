@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Assets/Fonts/Styles/MainMenu/ButtonFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://GameObjects/Panels/MainMenu/MainPanel/Button.gd" type="Script" id=2]
 
 [node name="MainMenuButton" type="Button"]
 modulate = Color( 0.623529, 0.839216, 0.541176, 1 )
@@ -12,6 +13,9 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.67451, 0.67451, 0.67451, 1 )
 custom_colors/font_color_pressed = Color( 0.117647, 0.117647, 0.117647, 1 )
 text = "Button"
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="pressed" from="." to="." method="on_click"]

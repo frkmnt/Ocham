@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/gain_mana.mp3-a7d11b53282b442a8eacc8efd70e1907.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/InGame/gain_mana.mp3"
+dest_files=[ "res://.import/gain_mana.mp3-a7d11b53282b442a8eacc8efd70e1907.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

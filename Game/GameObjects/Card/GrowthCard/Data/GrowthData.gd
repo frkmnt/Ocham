@@ -63,9 +63,11 @@ func deal_damage(value):
 		if _cur_health <= 0:
 			_cur_health = 0
 			_card._frame._animations.play("defeat")
+			SoundManager._defeat_card.play()
 			var _in_game_manager = get_tree().get_nodes_in_group("in_game_manager")[0]
 			_in_game_manager.on_growth_card_defeated_stage_1(_card)
 		else:
+			SoundManager._attack_card.play()
 			_card._frame._animations.play("slash")
 		_card._frame.lose_cost(_cur_health)
 

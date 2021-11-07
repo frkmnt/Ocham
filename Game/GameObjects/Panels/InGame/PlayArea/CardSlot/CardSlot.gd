@@ -27,6 +27,7 @@ func _ready():
 #==== Card Management ====#
 
 func set_card_on_slot_from_hand(card):
+	SoundManager._play_card.play()
 	_card = card
 	var interaction_handler = _card._interaction_handler
 	var prev_pos = _card.global_position
@@ -46,6 +47,7 @@ func set_card_on_slot_from_hand(card):
 
 
 func set_card_on_slot_from_opponent_hand(card):
+	SoundManager._play_card.play()
 	_card = card
 	var interaction_handler = _card._interaction_handler
 	var prev_pos = _card.global_position

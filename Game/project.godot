@@ -23,6 +23,7 @@ GlobalWorldEnvironment="*res://Utils/WorldEnvironment/WorldEnvironment.tscn"
 CursorManager="*res://Utils/Cursor/CursorManager.tscn"
 EffectManager="*res://Utils/Cards/EffectManager.gd"
 InputManager="*res://Utils/Input/InputManager.tscn"
+SoundManager="*res://Utils/Sound/SoundManager.tscn"
 
 [display]
 

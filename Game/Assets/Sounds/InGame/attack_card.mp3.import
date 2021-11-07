@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/attack_card.mp3-f9c347fd85ef6ddc24c40de1381c1790.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/InGame/attack_card.mp3"
+dest_files=[ "res://.import/attack_card.mp3-f9c347fd85ef6ddc24c40de1381c1790.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

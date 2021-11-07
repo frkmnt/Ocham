@@ -66,6 +66,7 @@ func draw_growth_card(idx):
 		draw_opponent_growth_card(idx)
 
 func draw_player_growth_card(idx):
+	SoundManager._draw_growth_card.play()
 	var card_data = _player_deck.draw_growth_card()
 	var card = create_new_card(card_data)
 	var start_scale = _deck_slot_container.get_card_scale()
@@ -75,6 +76,7 @@ func draw_player_growth_card(idx):
 	_deck_slot_container._player_growth_deck.draw_card()
 
 func draw_opponent_growth_card(idx):
+	SoundManager._draw_growth_card.play()
 	var card_data = _opponent_deck.draw_growth_card()
 	var card = create_new_card(card_data)
 	var start_scale = _deck_slot_container.get_card_scale()
@@ -99,6 +101,7 @@ func draw_initial_active_cards():
 	_deck_slot_container.draw_opponent_active_cards(5)
 
 func draw_player_active_card():
+	SoundManager._draw_active_card.play()
 	var card_data = _player_deck.draw_active_card()
 	var card = create_new_card(card_data)
 	_player_hand.add_card_from_deck(card)
@@ -108,6 +111,7 @@ func draw_player_active_card():
 	card._interaction_handler.add_to_hand_anim(start_scale)
 
 func draw_opponent_active_card():
+	SoundManager._draw_active_card.play()
 	var card_data = _opponent_deck.draw_active_card()
 	var card = create_new_card(card_data)
 	_opponent_hand.add_card_from_deck(card)
@@ -161,6 +165,7 @@ func turn_start_stage_1(): # on round label passed
 func turn_start_stage_2(): # on growth_cards_revealed
 	apply_growth_effects()
 	get_mana_from_growth_cards()
+	SoundManager._gain_mana.play()
 	start_timer(0.5, "turn_start_stage_3")
 
 func turn_start_stage_3():
@@ -183,6 +188,7 @@ func on_turn_end_stage_1():
 
 func on_game_over_stage_1():
 	_announcement_container.play_victory_anim()
+#	SoundManager._main_theme.play()
 
 
 
@@ -278,7 +284,6 @@ func set_opponent_active_card_on_slot(card, slot):
 func attack_active(attacker, target):
 	var can_attack_active = _card_slot_container.can_attack_active()
 	if can_attack_active:
-		print("attacking active")
 		attacker._data._has_attacked = true
 		target._data.deal_damage(attacker._data._value)
 	
