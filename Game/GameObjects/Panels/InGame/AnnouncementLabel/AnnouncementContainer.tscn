@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Assets/Fonts/Styles/InGame/AnnouncementLabelStyle.tres" type="DynamicFont" id=1]
 [ext_resource path="res://GameObjects/Panels/InGame/AnnouncementLabel/AnnouncementContainer.gd" type="Script" id=2]
@@ -64,6 +64,9 @@
 [ext_resource path="res://Assets/Animation/victory/win_match_full01.png" type="Texture" id=62]
 [ext_resource path="res://Assets/Animation/victory/win_match_full05.png" type="Texture" id=63]
 [ext_resource path="res://Assets/Animation/victory/win_match_full00.png" type="Texture" id=64]
+[ext_resource path="res://Assets/Graphics/UI/yes_icon.png" type="Texture" id=65]
+[ext_resource path="res://Assets/Fonts/Styles/InGame/RankLabelStyle.tres" type="DynamicFont" id=66]
+[ext_resource path="res://Assets/Graphics/UI/no_icon.png" type="Texture" id=67]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -73,15 +76,10 @@ animations = [ {
 "speed": 24.0
 } ]
 
-[node name="AnnouncementContainer" type="Control"]
-margin_left = 960.0
-margin_top = 54.0
-margin_right = 960.0
-margin_bottom = 54.0
+[node name="AnnouncementContainer" type="Node2D"]
+position = Vector2( 960, 54 )
+z_index = 50
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 1920.0
@@ -115,3 +113,49 @@ animation = "victory"
 [node name="FadeTween" type="Tween" parent="."]
 
 [node name="PosTween" type="Tween" parent="."]
+
+[node name="UpdateRank" type="Panel" parent="."]
+margin_left = -960.0
+margin_top = -54.0
+margin_right = 960.0
+margin_bottom = 1026.0
+rect_pivot_offset = Vector2( 500, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="UpdateRank"]
+margin_top = 200.0
+margin_right = 1920.0
+margin_bottom = 481.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UpdateRank/CenterContainer"]
+margin_left = 79.0
+margin_top = 70.0
+margin_right = 1840.0
+margin_bottom = 211.0
+custom_fonts/font = ExtResource( 66 )
+text = "Do you wish to update your rank?"
+
+[node name="YesButton" type="TextureButton" parent="UpdateRank"]
+margin_left = 360.0
+margin_top = 689.837
+margin_right = 862.0
+margin_bottom = 898.837
+texture_normal = ExtResource( 65 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NoButton" type="TextureButton" parent="UpdateRank"]
+margin_left = 1114.0
+margin_top = 689.837
+margin_right = 1616.0
+margin_bottom = 898.837
+texture_normal = ExtResource( 67 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

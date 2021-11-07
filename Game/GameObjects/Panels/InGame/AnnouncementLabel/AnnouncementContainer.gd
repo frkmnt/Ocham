@@ -1,4 +1,5 @@
-extends Control
+extends Node2D
+
 
 #==== References ====#
 onready var _parent = get_parent()
@@ -7,6 +8,7 @@ onready var _parent = get_parent()
 onready var _center_container = $CenterContainer
 onready var _label = $CenterContainer/AnnouncementLabel
 onready var _animated_sprite = $AnimatedSprite
+onready var _update_rank = $UpdateRank
 onready var _anim_timer = $AnimTimer
 onready var _fade_tween = $FadeTween
 onready var _pos_tween = $PosTween
@@ -25,6 +27,7 @@ var _callback
 func _ready():
 	_anim_timer.connect("timeout", self, "play_fade_out")
 	_animated_sprite.modulate.a = 0.0
+	_update_rank.modulate.a = 0.0
 
 func init_with_text(new_text, callback):
 	_callback = callback
@@ -92,6 +95,20 @@ func play_victory_anim():
 	new_modulate.a = 1.0
 	_fade_tween.interpolate_property(_animated_sprite, "modulate", modulate, new_modulate, 
 		0.2, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR, 0)
+	
+	_fade_tween.interpolate_callback(self, 4, "on_victory_anim_finished")
+	_fade_tween.start()
+
+
+
+func on_victory_anim_finished():
+	_update_rank.modulate.a
+	_update_rank.visible = true
+	_update_rank.modulate.a = 0.0
+	var victory_modulate = _update_rank.modulate
+	victory_modulate.a = 1.0
+	_fade_tween.interpolate_property(_update_rank, "modulate", _update_rank.modulate, victory_modulate, 
+		1.5, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR, 0)
 	_fade_tween.start()
 
 

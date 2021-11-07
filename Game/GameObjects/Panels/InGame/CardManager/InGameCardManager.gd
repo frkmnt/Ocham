@@ -98,7 +98,7 @@ func on_left_release():
 						else:
 							interaction_handler.interp_to_original_position(0.5)
 							var _in_game_manager = get_tree().get_nodes_in_group("in_game_manager")[0]
-							_selected_card._container._in_game_manager._mana_container.player_not_enough_mana()
+							_in_game_manager._mana_container.player_not_enough_mana()
 						break
 			if card_slot == null:
 				interaction_handler.interp_to_original_position(0.5)
