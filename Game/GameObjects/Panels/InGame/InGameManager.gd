@@ -346,8 +346,16 @@ func play_opponent_card(_idx): # TODO upgrade to server
 			lowest_cost_idx = idx
 			lowest_cost = card._data._cost
 		idx += 1
-	_opponent_hand.remove_card_by_idx(lowest_cost_idx)
-	_card_slot_container._opponent_active_2.set_card_on_slot_from_opponent_hand(lowest_cost_card)
+	var first_empty_slot
+	var slot = null
+	for i in range(3):
+		slot = _card_slot_container.get_opponent_active_slot(i)
+		if slot._card == null:
+			first_empty_slot = slot
+			break
+	if slot != null:
+		_opponent_hand.remove_card_by_idx(lowest_cost_idx)
+		slot.set_card_on_slot_from_opponent_hand(lowest_cost_card)
 
 
 
