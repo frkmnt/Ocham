@@ -1,7 +1,7 @@
 extends Node2D
 
 #==== References ====#
-onready var _parent = get_parent()
+onready var _in_game_manager = get_parent()
 
 #==== Meta Variables ====#
 var _selected_card = null
@@ -36,7 +36,7 @@ func handle_mouse_input(event):
 			on_right_release()
 
 func on_left_click(event):
-	if not _parent._player_turn:
+	if not _in_game_manager._player_turn:
 		return
 	
 	var all_shapes = get_world_2d().direct_space_state.intersect_point(get_global_mouse_position(), 32, [], 0x7FFFFFFF, false, true)
@@ -64,7 +64,7 @@ func on_left_click(event):
 
 
 func on_left_release():
-	if not _parent._player_turn:
+	if not _in_game_manager._player_turn:
 		return
 	if _selected_card != null:
 		var all_shapes = get_world_2d().direct_space_state.intersect_point(get_global_mouse_position(), 32, [], 0x7FFFFFFF, false, true)
@@ -72,7 +72,6 @@ func on_left_release():
 		var interaction_handler = _selected_card._interaction_handler
 		var data = _selected_card._data
 		if interaction_handler._can_target and data.can_attack():
-			var _in_game_manager = _selected_card._container._parent
 			for shape in all_shapes:
 				shape = shape["collider"]
 				if shape.is_in_group("card_slot"):
@@ -89,15 +88,16 @@ func on_left_release():
 				shape = shape["collider"]
 				if shape.is_in_group("card_slot"):
 					card_slot = shape
-					if card_slot._is_playable_slot:
+					if card_slot._is_playable_slot and card_slot._card == null:
 						var card_cost = _selected_card._data._cost
-						if card_cost <= _parent._cur_mana:
-							_parent._cur_mana -= card_cost
+						if card_cost <= _in_game_manager._cur_mana:
+							_in_game_manager._cur_mana -= card_cost
 							card_slot.set_card_on_slot_from_hand(_selected_card)
-							_selected_card._container._parent._mana_container.set_player_mana(_parent._cur_mana)
+							var _in_game_manager = get_tree().get_nodes_in_group("in_game_manager")[0]
+							_in_game_manager._mana_container.set_player_mana(_in_game_manager._cur_mana)
 						else:
 							interaction_handler.interp_to_original_position(0.5)
-							_selected_card._container._parent._mana_container.player_not_enough_mana()
+							_selected_card._container._in_game_manager._mana_container.player_not_enough_mana()
 						break
 			if card_slot == null:
 				interaction_handler.interp_to_original_position(0.5)

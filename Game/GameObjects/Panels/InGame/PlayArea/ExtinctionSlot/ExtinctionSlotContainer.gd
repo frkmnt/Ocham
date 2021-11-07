@@ -7,8 +7,8 @@ onready var _parent = get_parent()
 #onready var _anim_timer = $AnimTimer
 
 #==== Player ====#
-onready var _player_growth = $OpponentExtinctionSlot
-onready var _opponent_active = $PlayerExtinctionSlot
+onready var _opponent_slot = $OpponentExtinctionSlot
+onready var _player_slot = $PlayerExtinctionSlot
 
 
 
@@ -23,17 +23,20 @@ func _ready():
 #==== Player ====#
 
 func send_player_growth_to_extinction(growth_card):
-	_player_growth.set_card_on_slot_from_board(growth_card)
+	_player_slot.set_card_on_slot_from_board(growth_card)
 
 
 
 #==== Opponent ====#
 
 func send_opponent_growth_to_extinction(growth_card):
-	_player_growth.set_card_on_slot_from_board(growth_card)
+	_opponent_slot.set_card_on_slot_from_board(growth_card)
 
 
-
+func check_if_game_over():
+	if int(_opponent_slot._label.text) >= 5:
+		return true
+	return false
 
 
 

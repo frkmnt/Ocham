@@ -50,8 +50,9 @@ func draw_active_card(): # on deck click
 		return null # TODO add a game over signal
 	var card_info
 	var random_card_index = floor(rand_range(0, deck_size))
-	card_info = active_cards[random_card_index]
-	active_cards.remove(random_card_index)
+	card_info = active_cards[active_cards.size()-1]
+#	active_cards.remove(random_card_index)
+	active_cards.remove(active_cards.size()-1)
 	return card_info
 
 func draw_growth_card(): # on deck click

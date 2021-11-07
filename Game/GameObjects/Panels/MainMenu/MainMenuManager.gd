@@ -21,8 +21,9 @@ func _ready():
 #==== Main Panel ====#
 
 func on_mp_play_button_clicked():
-	var deck = get_current_deck()
-	_parent.go_to_game(deck)
+	var player_deck = CardLoader.create_default_deck_1()
+	var opponent_deck = CardLoader.create_default_deck_2()
+	_parent.go_to_game(player_deck, opponent_deck)
 
 func on_mp_collection_button_clicked():
 	_mp.visible = false

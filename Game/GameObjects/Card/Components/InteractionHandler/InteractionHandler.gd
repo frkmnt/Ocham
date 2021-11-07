@@ -219,16 +219,16 @@ func play_fade_out(duration, callback):
 	_fade_tween.start()
 
 
-func remove_card():
-	_card.queue_free()
-
 
 #==== Card Slot ====#
 
-func set_on_card_slot():
+func remove_card_from_slot():
 	if _card._container:
-		_card._container.set_card_on_card_slot(_card)
+		_card._container.remove_card(_card)
 
+func set_card_on_slot(slot):
+	slot.add_child(_card)
+	_card._container = slot
 
 
 

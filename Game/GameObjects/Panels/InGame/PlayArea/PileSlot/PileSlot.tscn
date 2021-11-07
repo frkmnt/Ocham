@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Graphics/InGame/PileSlot/pile_slot.png" type="Texture" id=1]
 [ext_resource path="res://GameObjects/Panels/InGame/PlayArea/PileSlot/PileSlot.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Graphics/Card/Cardback/cardback.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Fonts/Styles/InGame/PileStyle.tres" type="DynamicFont" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 74, 99 )
@@ -30,10 +31,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CenterContainer"]
-margin_left = -4.0
-margin_top = -7.0
-margin_right = 4.0
-margin_bottom = 7.0
+margin_left = -21.0
+margin_top = -55.0
+margin_right = 21.0
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 4 )
 text = "0"
 align = 1
 valign = 1

@@ -56,15 +56,21 @@ func add_health_to_card(value):
 		_card._container._parent.on_growth_card_defeated(_card)
 
 
-
 func deal_damage(value):
 	# TODO apply effects
 	if value > 0:
 		_cur_health -= value
 		if _cur_health <= 0:
-			var in_game_manager = get_tree().get_nodes_in_group("in_game_manager")[0]
-			in_game_manager.on_active_card_defeated(_card)
-		_card._frame._animations.play("slash")
+			_cur_health = 0
+			_card._frame._animations.play("defeat")
+			var _in_game_manager = get_tree().get_nodes_in_group("in_game_manager")[0]
+			_in_game_manager.on_growth_card_defeated_stage_1(_card)
+		else:
+			_card._frame._animations.play("slash")
+		_card._frame.lose_cost(_cur_health)
+
+
+
 
 
 func add_mana_to_card(value):

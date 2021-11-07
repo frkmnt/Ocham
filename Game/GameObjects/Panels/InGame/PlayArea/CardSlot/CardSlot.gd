@@ -15,6 +15,7 @@ export var _is_attackable_active_slot = false
 #==== Variables ====#
 var _size 
 var _margin = 0.03
+export var _idx = 0
 
 
 #==== Bootstrap ====#
@@ -29,8 +30,8 @@ func set_card_on_slot_from_hand(card):
 	_card = card
 	var interaction_handler = _card._interaction_handler
 	var prev_pos = _card.global_position
-	interaction_handler.set_on_card_slot()
-	add_child(_card)
+	interaction_handler.remove_card_from_slot()
+	interaction_handler.set_card_on_slot(self)
 	_card.global_position = prev_pos
 	
 	var new_scale = _size / _card.get_card_size()
@@ -48,8 +49,8 @@ func set_card_on_slot_from_opponent_hand(card):
 	_card = card
 	var interaction_handler = _card._interaction_handler
 	var prev_pos = _card.global_position
-	interaction_handler.set_on_card_slot()
-	add_child(_card)
+	interaction_handler.remove_card_from_slot()
+	interaction_handler.set_card_on_slot(self)
 	_card.global_position = prev_pos
 	
 	var new_scale = _size / _card.get_card_size()
@@ -65,12 +66,10 @@ func set_card_on_slot_from_opponent_hand(card):
 		interaction_handler._can_target = true
 
 
-
-
 func set_card_on_slot_from_deck(card, start_pos, start_scale):
+	add_child(card)
 	_card = card
 	var interaction_handler = _card._interaction_handler
-	add_child(card)
 	card.global_position = start_pos
 	card.scale = start_scale
 	
@@ -84,8 +83,17 @@ func set_card_on_slot_from_deck(card, start_pos, start_scale):
 	interaction_handler.set_flipped(true)
 
 
+func remove_card(card):
+	remove_child(_card)
+	_card = null
+
+
 #==== Card Interaction ====#
 
 func on_card_click(_new_card):
 	return
+
+
+
+
 

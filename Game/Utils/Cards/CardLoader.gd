@@ -4079,12 +4079,48 @@ func create_new_deck():
 
 func create_default_deck_1():
 	var deck = _deck.instance()
-	var deck_name = str("Test Deck")
+	var deck_name = str("Default")
 	var deck_description = "This is the default deck."
 	deck.initialize_data(deck_name, deck_description)
 	
 	var card_ids = {
-		"active": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ,20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+		"active": [47, 26, 29, 30, 31, 7, 3, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ,20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+		"growth": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		"fungi": [],
+		"weather": []
+	}
+	
+	var deck_data = {}
+	for card_type in card_ids.keys():
+		deck_data[card_type] = []
+		match card_type:
+			"active":
+				for card_id in card_ids[card_type]:
+					deck_data[card_type].append(get_active_card_data(card_id))
+			"growth":
+				for card_id in card_ids[card_type]:
+					deck_data[card_type].append(get_growth_card_data(card_id))
+			"fungi":
+				for card_id in card_ids[card_type]:
+					deck_data[card_type].append(get_fungi_card_data(card_id))
+			"weather":
+				for card_id in card_ids[card_type]:
+					deck_data[card_type].append(get_weather_card_data(card_id))
+	deck.initialize_with_data(deck_data)
+	
+	_total_decks += 1
+	return deck
+
+
+
+func create_default_deck_2():
+	var deck = _deck.instance()
+	var deck_name = str("Default Deck 2")
+	var deck_description = "This is the default deck."
+	deck.initialize_data(deck_name, deck_description)
+	
+	var card_ids = {
+		"active": [34, 34, 34, 34, 34, 34, 34, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ,20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
 		"growth": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		"fungi": [],
 		"weather": []

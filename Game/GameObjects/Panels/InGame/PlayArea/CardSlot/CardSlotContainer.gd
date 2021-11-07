@@ -68,7 +68,6 @@ func on_flip_growth_timer_tick():
 func can_attack_active():
 	return true
 
-
 func can_attack_growth():
 	var can_attack = true
 	if _opponent_active_1._card != null \
@@ -125,7 +124,6 @@ func get_opponent_active_slot(idx):
 func get_opponent_active_slots():
 	return [_opponent_active_1, _opponent_active_2, _opponent_active_3]
 
-
 func get_opponent_growth_slot(idx):
 	var slot
 	match idx:
@@ -139,7 +137,6 @@ func get_opponent_growth_slot(idx):
 
 func get_opponent_growth_slots():
 	return [_opponent_growth_1, _opponent_growth_2, _opponent_growth_3]
-
 
 
 

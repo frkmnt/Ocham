@@ -53,8 +53,11 @@ func remove_all_cards():
 func remove_card(card):
 	var idx = _card_list.find(card)
 	_card_list.remove(idx)
+	remove_child(card)
+	position_cards_correctly_interp()
 
 func remove_card_by_idx(idx):
+	var card = _card_list[idx]
 	_card_list.remove(idx)
 
 
@@ -63,10 +66,6 @@ func remove_card_by_idx(idx):
 func on_card_click(_card):
 	return
 
-func set_card_on_card_slot(card):
-	card._interaction_handler._locked = true
-	remove_child(card)
-	position_cards_correctly_interp()
 
 
 

@@ -1,21 +1,101 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://Assets/Fonts/Styles/InGame/AnnouncementLabelStyle.tres" type="DynamicFont" id=1]
 [ext_resource path="res://GameObjects/Panels/InGame/AnnouncementLabel/AnnouncementContainer.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Animation/victory/win_match_full03.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Animation/victory/win_match_full02.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Animation/victory/win_match_full58.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Animation/victory/win_match_full57.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Animation/victory/win_match_full59.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Animation/victory/win_match_full61.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Animation/victory/win_match_full60.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Animation/victory/win_match_full40.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Animation/victory/win_match_full39.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Animation/victory/win_match_full43.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Animation/victory/win_match_full41.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Animation/victory/win_match_full42.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Animation/victory/win_match_full44.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Animation/victory/win_match_full45.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Animation/victory/win_match_full47.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Animation/victory/win_match_full46.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Animation/victory/win_match_full48.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Animation/victory/win_match_full49.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Animation/victory/win_match_full51.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Animation/victory/win_match_full50.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Animation/victory/win_match_full53.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Animation/victory/win_match_full52.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Animation/victory/win_match_full54.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Animation/victory/win_match_full55.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Animation/victory/win_match_full56.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Animation/victory/win_match_full07.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Animation/victory/win_match_full19.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Animation/victory/win_match_full22.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Animation/victory/win_match_full21.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Animation/victory/win_match_full20.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Animation/victory/win_match_full24.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Animation/victory/win_match_full23.png" type="Texture" id=34]
+[ext_resource path="res://Assets/Animation/victory/win_match_full25.png" type="Texture" id=35]
+[ext_resource path="res://Assets/Animation/victory/win_match_full26.png" type="Texture" id=36]
+[ext_resource path="res://Assets/Animation/victory/win_match_full27.png" type="Texture" id=37]
+[ext_resource path="res://Assets/Animation/victory/win_match_full29.png" type="Texture" id=38]
+[ext_resource path="res://Assets/Animation/victory/win_match_full28.png" type="Texture" id=39]
+[ext_resource path="res://Assets/Animation/victory/win_match_full31.png" type="Texture" id=40]
+[ext_resource path="res://Assets/Animation/victory/win_match_full30.png" type="Texture" id=41]
+[ext_resource path="res://Assets/Animation/victory/win_match_full34.png" type="Texture" id=42]
+[ext_resource path="res://Assets/Animation/victory/win_match_full33.png" type="Texture" id=43]
+[ext_resource path="res://Assets/Animation/victory/win_match_full32.png" type="Texture" id=44]
+[ext_resource path="res://Assets/Animation/victory/win_match_full35.png" type="Texture" id=45]
+[ext_resource path="res://Assets/Animation/victory/win_match_full38.png" type="Texture" id=46]
+[ext_resource path="res://Assets/Animation/victory/win_match_full37.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Animation/victory/win_match_full36.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Animation/victory/win_match_full12.png" type="Texture" id=49]
+[ext_resource path="res://Assets/Animation/victory/win_match_full10.png" type="Texture" id=50]
+[ext_resource path="res://Assets/Animation/victory/win_match_full09.png" type="Texture" id=51]
+[ext_resource path="res://Assets/Animation/victory/win_match_full13.png" type="Texture" id=52]
+[ext_resource path="res://Assets/Animation/victory/win_match_full15.png" type="Texture" id=53]
+[ext_resource path="res://Assets/Animation/victory/win_match_full17.png" type="Texture" id=54]
+[ext_resource path="res://Assets/Animation/victory/win_match_full16.png" type="Texture" id=55]
+[ext_resource path="res://Assets/Animation/victory/win_match_full14.png" type="Texture" id=56]
+[ext_resource path="res://Assets/Animation/victory/win_match_full08.png" type="Texture" id=57]
+[ext_resource path="res://Assets/Animation/victory/win_match_full18.png" type="Texture" id=58]
+[ext_resource path="res://Assets/Animation/victory/win_match_full11.png" type="Texture" id=59]
+[ext_resource path="res://Assets/Animation/victory/win_match_full06.png" type="Texture" id=60]
+[ext_resource path="res://Assets/Animation/victory/win_match_full04.png" type="Texture" id=61]
+[ext_resource path="res://Assets/Animation/victory/win_match_full01.png" type="Texture" id=62]
+[ext_resource path="res://Assets/Animation/victory/win_match_full05.png" type="Texture" id=63]
+[ext_resource path="res://Assets/Animation/victory/win_match_full00.png" type="Texture" id=64]
 
-[node name="AnnouncementContainer" type="CenterContainer"]
-modulate = Color( 1, 1, 1, 0 )
-margin_right = 1920.0
-margin_bottom = 109.0
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 64 ), ExtResource( 62 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 61 ), ExtResource( 63 ), ExtResource( 60 ), ExtResource( 28 ), ExtResource( 57 ), ExtResource( 51 ), ExtResource( 50 ), ExtResource( 59 ), ExtResource( 49 ), ExtResource( 52 ), ExtResource( 56 ), ExtResource( 53 ), ExtResource( 55 ), ExtResource( 54 ), ExtResource( 58 ), ExtResource( 29 ), ExtResource( 32 ), ExtResource( 31 ), ExtResource( 30 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 39 ), ExtResource( 38 ), ExtResource( 41 ), ExtResource( 40 ), ExtResource( 44 ), ExtResource( 43 ), ExtResource( 42 ), ExtResource( 45 ), ExtResource( 48 ), ExtResource( 47 ), ExtResource( 46 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 24 ), ExtResource( 23 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "victory",
+"speed": 24.0
+} ]
+
+[node name="AnnouncementContainer" type="Control"]
+margin_left = 960.0
+margin_top = 54.0
+margin_right = 960.0
+margin_bottom = 54.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnnouncementLabel" type="Label" parent="."]
-margin_left = 806.0
-margin_right = 1114.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 1920.0
 margin_bottom = 109.0
+use_top_left = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnnouncementLabel" type="Label" parent="CenterContainer"]
+margin_left = -154.0
+margin_top = -55.0
+margin_right = 154.0
+margin_bottom = 54.0
 rect_min_size = Vector2( 308, 109 )
 custom_fonts/font = ExtResource( 1 )
 text = "Round 1"
@@ -25,8 +105,13 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="PosTween" type="Tween" parent="AnnouncementLabel"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 404 )
+frames = SubResource( 1 )
+animation = "victory"
 
-[node name="FadeTween" type="Tween" parent="AnnouncementLabel"]
+[node name="AnimTimer" type="Timer" parent="."]
 
-[node name="AnimTimer" type="Timer" parent="AnnouncementLabel"]
+[node name="FadeTween" type="Tween" parent="."]
+
+[node name="PosTween" type="Tween" parent="."]

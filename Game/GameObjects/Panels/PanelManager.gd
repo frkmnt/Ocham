@@ -19,11 +19,11 @@ func _ready():
 
 #==== Game-Menu Interface ====#
 
-func go_to_game(deck):
+func go_to_game(player_deck, opponent_deck):
 	# TODO add loading screen
 	var in_game_instance = ObjectFactory.instance_in_game_manager()
 	_igm = in_game_instance
 	add_child(in_game_instance)
 	_mmm.queue_free()
-	in_game_instance.initialize(deck)
+	in_game_instance.initialize(player_deck, opponent_deck)
 

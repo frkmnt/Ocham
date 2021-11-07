@@ -11,9 +11,11 @@ position = Vector2( 684, 884 )
 
 [node name="PlayerGrowth2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 845, 884 )
+_idx = 1
 
 [node name="PlayerGrowth3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1006, 884 )
+_idx = 2
 
 [node name="PlayerActive1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 684, 675 )
@@ -22,10 +24,12 @@ _is_playable_slot = true
 [node name="PlayerActive2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 845, 675 )
 _is_playable_slot = true
+_idx = 1
 
 [node name="PlayerActive3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1006, 675 )
 _is_playable_slot = true
+_idx = 2
 
 [node name="OpponentGrowth1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1006, 191 )
@@ -34,10 +38,12 @@ _is_attackable_growth_slot = true
 [node name="OpponentGrowth2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 845, 191 )
 _is_attackable_growth_slot = true
+_idx = 1
 
 [node name="OpponentGrowth3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 684, 191 )
 _is_attackable_growth_slot = true
+_idx = 2
 
 [node name="OpponentActive1" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1006, 400 )
@@ -46,9 +52,11 @@ _is_attackable_active_slot = true
 [node name="OpponentActive2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 845, 400 )
 _is_attackable_active_slot = true
+_idx = 1
 
 [node name="OpponentActive3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 684, 400 )
 _is_attackable_active_slot = true
+_idx = 2
 
 [node name="AnimTimer" type="Timer" parent="."]

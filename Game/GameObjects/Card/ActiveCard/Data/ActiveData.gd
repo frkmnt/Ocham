@@ -23,7 +23,7 @@ var _cur_latency = 1
 var _cur_health = 1
 var _cur_toughness = 1
 var _effects_dict = {} # dict of effect_type_id : [effect_list]
-var _attack_cooldown = true
+var _attack_cooldown = false
 var _has_attacked = false
 
 #==== Bootstrap ====#
@@ -64,10 +64,13 @@ func deal_damage(value):
 		_cur_health -= value
 		if _cur_health <= 0:
 			_cur_health = 0
-			_card._container._parent.on_active_card_defeated_stage_1(_card)
+			_card._frame._animations.play("defeat")
+			var _in_game_manager = get_tree().get_nodes_in_group("in_game_manager")[0]
+			_in_game_manager.on_active_card_defeated_stage_1(_card)
 		else:
 			_card._frame._animations.play("slash")
 		_card._frame.lose_cost(_cur_health)
+
 
 
 
@@ -83,7 +86,7 @@ func add_value_to_card(value):
 func can_attack():
 	var can_attack = true
 	if _attack_cooldown or _has_attacked:
-		can_attack = false
+		can_attack = true
 	return can_attack
 
 
