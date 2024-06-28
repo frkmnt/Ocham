@@ -11,7 +11,7 @@ The objective of this game is to reduce the opponent's hit points to 0.
 Each player has 2 rows for cards: one for growth cards (that grant mana) and another for creature cards (that can attack).
 Each card has its own unique effects.
 
-The game was planned to have a p2p gamemode, but due to the time restrictions this was never completed.
+The game was planned to have a p2p gamemode, but due to the time restrictions this was never completed, and the game logic was left half finished.
 
 
 ***
